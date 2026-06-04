@@ -251,11 +251,11 @@ export type UtilisateurOrderByWithRelationInput = {
 export type UtilisateurWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    prenom?: string;
     AND?: Prisma.UtilisateurWhereInput | Prisma.UtilisateurWhereInput[];
     OR?: Prisma.UtilisateurWhereInput[];
     NOT?: Prisma.UtilisateurWhereInput | Prisma.UtilisateurWhereInput[];
     nom?: Prisma.StringFilter<'Utilisateur'> | string;
-    prenom?: Prisma.StringFilter<'Utilisateur'> | string;
     email?: Prisma.StringFilter<'Utilisateur'> | string;
     adresse?: Prisma.StringFilter<'Utilisateur'> | string;
     codePostal?: Prisma.StringFilter<'Utilisateur'> | string;
@@ -267,7 +267,7 @@ export type UtilisateurWhereUniqueInput = Prisma.AtLeast<
     commandes?: Prisma.CommandeListRelationFilter;
     paniers?: Prisma.PanierListRelationFilter;
   },
-  'id'
+  'id' | 'prenom'
 >;
 
 export type UtilisateurOrderByWithAggregationInput = {
