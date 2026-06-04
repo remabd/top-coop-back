@@ -5,11 +5,7 @@ import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 @Injectable()
 export class PrismaService extends PrismaClient {
   constructor() {
-    const adapter = new PrismaMariaDb({
-      host: 'localhost',
-      port: 3306,
-      connectionLimit: 5,
-    });
+    const adapter = new PrismaMariaDb(process.env.DATABASE_URL as string);
     super({ adapter });
   }
 }
