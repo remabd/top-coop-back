@@ -17,7 +17,7 @@ export interface JwtPayload {
 }
 
 export interface AuthenticatedRequest extends Request {
-  user?: JwtPayload;
+  utilisateur?: JwtPayload;
 }
 
 @Injectable()
@@ -35,14 +35,14 @@ export class AuthGuard implements CanActivate {
     if (estPublic) {
       return true;
     }
-    const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
-    const token = this.extraitTokendeRequete(request);
+    const requete = context.switchToHttp().getRequest<AuthenticatedRequest>();
+    const token = this.extraitTokendeRequete(requete);
     if (!token) {
       throw new UnauthorizedException();
     }
     try {
       const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
-      request.user = payload;
+      requete.utilisateur = payload;
     } catch {
       throw new UnauthorizedException();
     }

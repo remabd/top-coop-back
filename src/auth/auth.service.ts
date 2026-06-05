@@ -15,6 +15,7 @@ export class AuthService {
   ) {}
 
   async authentifier(email: string, motDePasse: string): Promise<any> {
+    console.log('here');
     const utilisateur = await this.utilisateurService.utilisateur({
       id: undefined,
       email,
