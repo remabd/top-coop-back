@@ -305,7 +305,7 @@ export type Type_ProduitCreateInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitCreateNestedManyWithoutTypeProduitInput;
   produits?: Prisma.ProduitCreateNestedManyWithoutTypeProduitInput;
 };
@@ -316,7 +316,7 @@ export type Type_ProduitUncheckedCreateInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
   produits?: Prisma.ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
 };
@@ -349,7 +349,7 @@ export type Type_ProduitCreateManyInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type Type_ProduitUpdateManyMutationInput = {
@@ -482,7 +482,7 @@ export type Type_ProduitCreateWithoutProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitCreateNestedManyWithoutTypeProduitInput;
 };
 
@@ -492,7 +492,7 @@ export type Type_ProduitUncheckedCreateWithoutProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
 };
 
@@ -550,7 +550,7 @@ export type Type_ProduitCreateWithoutCommandeProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   produits?: Prisma.ProduitCreateNestedManyWithoutTypeProduitInput;
 };
 
@@ -560,7 +560,7 @@ export type Type_ProduitUncheckedCreateWithoutCommandeProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   produits?: Prisma.ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
 };
 

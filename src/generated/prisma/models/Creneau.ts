@@ -320,7 +320,7 @@ export type CreneauCreateInput = {
   statut: $Enums.Status;
   description: string;
   capacite: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   participations?: Prisma.ParticipationCreateNestedManyWithoutCreneauInput;
 };
 
@@ -332,7 +332,7 @@ export type CreneauUncheckedCreateInput = {
   statut: $Enums.Status;
   description: string;
   capacite: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   participations?: Prisma.ParticipationUncheckedCreateNestedManyWithoutCreneauInput;
 };
 
@@ -368,7 +368,7 @@ export type CreneauCreateManyInput = {
   statut: $Enums.Status;
   description: string;
   capacite: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type CreneauUpdateManyMutationInput = {
@@ -501,7 +501,7 @@ export type CreneauCreateWithoutParticipationsInput = {
   statut: $Enums.Status;
   description: string;
   capacite: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type CreneauUncheckedCreateWithoutParticipationsInput = {
@@ -512,7 +512,7 @@ export type CreneauUncheckedCreateWithoutParticipationsInput = {
   statut: $Enums.Status;
   description: string;
   capacite: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type CreneauCreateOrConnectWithoutParticipationsInput = {

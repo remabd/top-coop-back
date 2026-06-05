@@ -230,7 +230,7 @@ export type CommandeScalarWhereWithAggregatesInput = {
 
 export type CommandeCreateInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateur: Prisma.UtilisateurCreateNestedOneWithoutCommandesInput;
   commandeProduits?: Prisma.Commande_ProduitCreateNestedManyWithoutCommandeInput;
 };
@@ -238,7 +238,7 @@ export type CommandeCreateInput = {
 export type CommandeUncheckedCreateInput = {
   id?: string;
   utilisateurId: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedCreateNestedManyWithoutCommandeInput;
 };
 
@@ -259,7 +259,7 @@ export type CommandeUncheckedUpdateInput = {
 export type CommandeCreateManyInput = {
   id?: string;
   utilisateurId: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type CommandeUpdateManyMutationInput = {
@@ -436,13 +436,13 @@ export type CommandeUpdateOneRequiredWithoutCommandeProduitsNestedInput = {
 
 export type CommandeCreateWithoutUtilisateurInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitCreateNestedManyWithoutCommandeInput;
 };
 
 export type CommandeUncheckedCreateWithoutUtilisateurInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedCreateNestedManyWithoutCommandeInput;
 };
 
@@ -500,14 +500,14 @@ export type CommandeScalarWhereInput = {
 
 export type CommandeCreateWithoutCommandeProduitsInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateur: Prisma.UtilisateurCreateNestedOneWithoutCommandesInput;
 };
 
 export type CommandeUncheckedCreateWithoutCommandeProduitsInput = {
   id?: string;
   utilisateurId: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type CommandeCreateOrConnectWithoutCommandeProduitsInput = {
@@ -552,7 +552,7 @@ export type CommandeUncheckedUpdateWithoutCommandeProduitsInput = {
 
 export type CommandeCreateManyUtilisateurInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type CommandeUpdateWithoutUtilisateurInput = {

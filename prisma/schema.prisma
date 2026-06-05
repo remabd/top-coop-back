@@ -16,7 +16,7 @@ model Creneau {
   statut         Status
   description    String
   capacite       Int
-  dateCreation   DateTime
+  dateCreation   DateTime        @default(now())
   participations Participation[]
 }
 
@@ -24,7 +24,7 @@ model Participation {
   id            String      @id @default(uuid())
   utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
   creneau       Creneau     @relation(fields: [creneauId], references: [id])
-  dateCreation  DateTime
+  dateCreation  DateTime    @default(now())
   utilisateurId String
   creneauId     String
 }
@@ -52,7 +52,7 @@ model Panier {
   utilisateur    Utilisateur      @relation(fields: [utilisateurId], references: [id])
   utilisateurId  String
   prix           Float
-  dateCreation   DateTime
+  dateCreation   DateTime         @default(now())
   produitPaniers Produit_Panier[]
 }
 
@@ -85,7 +85,7 @@ model Type_Produit {
   quantiteMax      Float
   unite            Unite
   prix             Float
-  dateCreation     DateTime
+  dateCreation     DateTime           @default(now())
   commandeProduits Commande_Produit[]
   produits         Produit[]
 }
@@ -103,7 +103,7 @@ model Commande {
   id               String             @id @default(uuid())
   utilisateur      Utilisateur        @relation(fields: [utilisateurId], references: [id])
   utilisateurId    String
-  dateCreation     DateTime
+  dateCreation     DateTime           @default(now())
   commandeProduits Commande_Produit[]
 }
 
