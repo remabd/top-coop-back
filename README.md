@@ -7,6 +7,7 @@ Ce repository est une API pour les front mobile et web Top'Coop
 - MySQL
 - Prettier
 - Eslint
+- Jest
 
 ## Installation et lancement
 
