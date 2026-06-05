@@ -26,8 +26,8 @@ export type AggregateUtilisateur = {
 
 export type UtilisateurMinAggregateOutputType = {
   id: string | null;
-  nom: string | null;
   prenom: string | null;
+  nom: string | null;
   email: string | null;
   adresse: string | null;
   codePostal: string | null;
@@ -39,8 +39,8 @@ export type UtilisateurMinAggregateOutputType = {
 
 export type UtilisateurMaxAggregateOutputType = {
   id: string | null;
-  nom: string | null;
   prenom: string | null;
+  nom: string | null;
   email: string | null;
   adresse: string | null;
   codePostal: string | null;
@@ -52,8 +52,8 @@ export type UtilisateurMaxAggregateOutputType = {
 
 export type UtilisateurCountAggregateOutputType = {
   id: number;
-  nom: number;
   prenom: number;
+  nom: number;
   email: number;
   adresse: number;
   codePostal: number;
@@ -66,8 +66,8 @@ export type UtilisateurCountAggregateOutputType = {
 
 export type UtilisateurMinAggregateInputType = {
   id?: true;
-  nom?: true;
   prenom?: true;
+  nom?: true;
   email?: true;
   adresse?: true;
   codePostal?: true;
@@ -79,8 +79,8 @@ export type UtilisateurMinAggregateInputType = {
 
 export type UtilisateurMaxAggregateInputType = {
   id?: true;
-  nom?: true;
   prenom?: true;
+  nom?: true;
   email?: true;
   adresse?: true;
   codePostal?: true;
@@ -92,8 +92,8 @@ export type UtilisateurMaxAggregateInputType = {
 
 export type UtilisateurCountAggregateInputType = {
   id?: true;
-  nom?: true;
   prenom?: true;
+  nom?: true;
   email?: true;
   adresse?: true;
   codePostal?: true;
@@ -185,8 +185,8 @@ export type UtilisateurGroupByArgs<
 
 export type UtilisateurGroupByOutputType = {
   id: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -217,8 +217,8 @@ export type UtilisateurWhereInput = {
   OR?: Prisma.UtilisateurWhereInput[];
   NOT?: Prisma.UtilisateurWhereInput | Prisma.UtilisateurWhereInput[];
   id?: Prisma.StringFilter<'Utilisateur'> | string;
-  nom?: Prisma.StringFilter<'Utilisateur'> | string;
   prenom?: Prisma.StringFilter<'Utilisateur'> | string;
+  nom?: Prisma.StringFilter<'Utilisateur'> | string;
   email?: Prisma.StringFilter<'Utilisateur'> | string;
   adresse?: Prisma.StringFilter<'Utilisateur'> | string;
   codePostal?: Prisma.StringFilter<'Utilisateur'> | string;
@@ -233,8 +233,8 @@ export type UtilisateurWhereInput = {
 
 export type UtilisateurOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
-  nom?: Prisma.SortOrder;
   prenom?: Prisma.SortOrder;
+  nom?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   adresse?: Prisma.SortOrder;
   codePostal?: Prisma.SortOrder;
@@ -251,12 +251,12 @@ export type UtilisateurOrderByWithRelationInput = {
 export type UtilisateurWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    prenom?: string;
+    email?: string;
     AND?: Prisma.UtilisateurWhereInput | Prisma.UtilisateurWhereInput[];
     OR?: Prisma.UtilisateurWhereInput[];
     NOT?: Prisma.UtilisateurWhereInput | Prisma.UtilisateurWhereInput[];
+    prenom?: Prisma.StringFilter<'Utilisateur'> | string;
     nom?: Prisma.StringFilter<'Utilisateur'> | string;
-    email?: Prisma.StringFilter<'Utilisateur'> | string;
     adresse?: Prisma.StringFilter<'Utilisateur'> | string;
     codePostal?: Prisma.StringFilter<'Utilisateur'> | string;
     ville?: Prisma.StringFilter<'Utilisateur'> | string;
@@ -267,13 +267,13 @@ export type UtilisateurWhereUniqueInput = Prisma.AtLeast<
     commandes?: Prisma.CommandeListRelationFilter;
     paniers?: Prisma.PanierListRelationFilter;
   },
-  'id' | 'prenom'
+  'id' | 'email'
 >;
 
 export type UtilisateurOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
-  nom?: Prisma.SortOrder;
   prenom?: Prisma.SortOrder;
+  nom?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   adresse?: Prisma.SortOrder;
   codePostal?: Prisma.SortOrder;
@@ -295,8 +295,8 @@ export type UtilisateurScalarWhereWithAggregatesInput = {
     | Prisma.UtilisateurScalarWhereWithAggregatesInput
     | Prisma.UtilisateurScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
-  nom?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
   prenom?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
+  nom?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
   email?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
   adresse?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
   codePostal?: Prisma.StringWithAggregatesFilter<'Utilisateur'> | string;
@@ -311,8 +311,8 @@ export type UtilisateurScalarWhereWithAggregatesInput = {
 
 export type UtilisateurCreateInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -327,8 +327,8 @@ export type UtilisateurCreateInput = {
 
 export type UtilisateurUncheckedCreateInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -343,8 +343,8 @@ export type UtilisateurUncheckedCreateInput = {
 
 export type UtilisateurUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -359,8 +359,8 @@ export type UtilisateurUpdateInput = {
 
 export type UtilisateurUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -375,8 +375,8 @@ export type UtilisateurUncheckedUpdateInput = {
 
 export type UtilisateurCreateManyInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -388,8 +388,8 @@ export type UtilisateurCreateManyInput = {
 
 export type UtilisateurUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -401,8 +401,8 @@ export type UtilisateurUpdateManyMutationInput = {
 
 export type UtilisateurUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -427,8 +427,8 @@ export type UtilisateurOrderByRelevanceInput = {
 
 export type UtilisateurCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  nom?: Prisma.SortOrder;
   prenom?: Prisma.SortOrder;
+  nom?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   adresse?: Prisma.SortOrder;
   codePostal?: Prisma.SortOrder;
@@ -440,8 +440,8 @@ export type UtilisateurCountOrderByAggregateInput = {
 
 export type UtilisateurMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  nom?: Prisma.SortOrder;
   prenom?: Prisma.SortOrder;
+  nom?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   adresse?: Prisma.SortOrder;
   codePostal?: Prisma.SortOrder;
@@ -453,8 +453,8 @@ export type UtilisateurMaxOrderByAggregateInput = {
 
 export type UtilisateurMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  nom?: Prisma.SortOrder;
   prenom?: Prisma.SortOrder;
+  nom?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   adresse?: Prisma.SortOrder;
   codePostal?: Prisma.SortOrder;
@@ -548,8 +548,8 @@ export type UtilisateurUpdateOneRequiredWithoutCommandesNestedInput = {
 
 export type UtilisateurCreateWithoutParticipationsInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -563,8 +563,8 @@ export type UtilisateurCreateWithoutParticipationsInput = {
 
 export type UtilisateurUncheckedCreateWithoutParticipationsInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -606,8 +606,8 @@ export type UtilisateurUpdateToOneWithWhereWithoutParticipationsInput = {
 
 export type UtilisateurUpdateWithoutParticipationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -621,8 +621,8 @@ export type UtilisateurUpdateWithoutParticipationsInput = {
 
 export type UtilisateurUncheckedUpdateWithoutParticipationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -636,8 +636,8 @@ export type UtilisateurUncheckedUpdateWithoutParticipationsInput = {
 
 export type UtilisateurCreateWithoutPaniersInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -651,8 +651,8 @@ export type UtilisateurCreateWithoutPaniersInput = {
 
 export type UtilisateurUncheckedCreateWithoutPaniersInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -694,8 +694,8 @@ export type UtilisateurUpdateToOneWithWhereWithoutPaniersInput = {
 
 export type UtilisateurUpdateWithoutPaniersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -709,8 +709,8 @@ export type UtilisateurUpdateWithoutPaniersInput = {
 
 export type UtilisateurUncheckedUpdateWithoutPaniersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -724,8 +724,8 @@ export type UtilisateurUncheckedUpdateWithoutPaniersInput = {
 
 export type UtilisateurCreateWithoutCommandesInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -739,8 +739,8 @@ export type UtilisateurCreateWithoutCommandesInput = {
 
 export type UtilisateurUncheckedCreateWithoutCommandesInput = {
   id?: string;
-  nom: string;
   prenom: string;
+  nom: string;
   email: string;
   adresse: string;
   codePostal: string;
@@ -782,8 +782,8 @@ export type UtilisateurUpdateToOneWithWhereWithoutCommandesInput = {
 
 export type UtilisateurUpdateWithoutCommandesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -797,8 +797,8 @@ export type UtilisateurUpdateWithoutCommandesInput = {
 
 export type UtilisateurUncheckedUpdateWithoutCommandesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   prenom?: Prisma.StringFieldUpdateOperationsInput | string;
+  nom?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   adresse?: Prisma.StringFieldUpdateOperationsInput | string;
   codePostal?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -878,8 +878,8 @@ export type UtilisateurSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    nom?: boolean;
     prenom?: boolean;
+    nom?: boolean;
     email?: boolean;
     adresse?: boolean;
     codePostal?: boolean;
@@ -897,8 +897,8 @@ export type UtilisateurSelect<
 
 export type UtilisateurSelectScalar = {
   id?: boolean;
-  nom?: boolean;
   prenom?: boolean;
+  nom?: boolean;
   email?: boolean;
   adresse?: boolean;
   codePostal?: boolean;
@@ -913,8 +913,8 @@ export type UtilisateurOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   | 'id'
-  | 'nom'
   | 'prenom'
+  | 'nom'
   | 'email'
   | 'adresse'
   | 'codePostal'
@@ -947,8 +947,8 @@ export type $UtilisateurPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
-      nom: string;
       prenom: string;
+      nom: string;
       email: string;
       adresse: string;
       codePostal: string;
@@ -1513,8 +1513,8 @@ export interface Prisma__UtilisateurClient<
  */
 export interface UtilisateurFieldRefs {
   readonly id: Prisma.FieldRef<'Utilisateur', 'String'>;
-  readonly nom: Prisma.FieldRef<'Utilisateur', 'String'>;
   readonly prenom: Prisma.FieldRef<'Utilisateur', 'String'>;
+  readonly nom: Prisma.FieldRef<'Utilisateur', 'String'>;
   readonly email: Prisma.FieldRef<'Utilisateur', 'String'>;
   readonly adresse: Prisma.FieldRef<'Utilisateur', 'String'>;
   readonly codePostal: Prisma.FieldRef<'Utilisateur', 'String'>;

@@ -107,8 +107,8 @@ export type ParticipationScalarFieldEnum =
 
 export const UtilisateurScalarFieldEnum = {
   id: 'id',
-  nom: 'nom',
   prenom: 'prenom',
+  nom: 'nom',
   email: 'email',
   adresse: 'adresse',
   codePostal: 'codePostal',
@@ -214,8 +214,8 @@ export type ParticipationOrderByRelevanceFieldEnum =
 
 export const UtilisateurOrderByRelevanceFieldEnum = {
   id: 'id',
-  nom: 'nom',
   prenom: 'prenom',
+  nom: 'nom',
   email: 'email',
   adresse: 'adresse',
   codePostal: 'codePostal',

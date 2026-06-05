@@ -31,9 +31,9 @@ model Participation {
 
 model Utilisateur {
   id             String          @id @default(uuid())
+  prenom         String
   nom            String
-  prenom         String          @unique
-  email          String
+  email          String          @unique
   adresse        String
   codePostal     String
   ville          String
