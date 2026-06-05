@@ -8,7 +8,18 @@ describe('CreneauController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CreneauController],
-      providers: [CreneauService],
+      providers: [
+        {
+          provide: CreneauService,
+          useValue: {
+            creneau: jest.fn(),
+            creneaux: jest.fn(),
+            creeCreneau: jest.fn(),
+            supprimeCreneau: jest.fn(),
+            modifieCreneau: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<CreneauController>(CreneauController);

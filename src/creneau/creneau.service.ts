@@ -3,9 +3,9 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Creneau, Prisma } from 'src/generated/prisma/client';
-import { CreneauWhereUniqueInput } from 'src/generated/prisma/models';
-import { PrismaService } from 'src/prisma.service';
+import { Creneau, Prisma } from '../generated/prisma/client';
+import { CreneauWhereUniqueInput } from '../generated/prisma/models';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class CreneauService {
