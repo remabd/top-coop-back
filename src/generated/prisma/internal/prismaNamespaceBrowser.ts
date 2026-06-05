@@ -145,12 +145,11 @@ export type Produit_PanierScalarFieldEnum =
 
 export const ProduitScalarFieldEnum = {
   id: 'id',
-  typeproduitId: 'typeproduitId',
+  typeProduitId: 'typeProduitId',
   quantite: 'quantite',
   dateArrive: 'dateArrive',
   dateSortie: 'dateSortie',
   datePeremption: 'datePeremption',
-  type_ProduitId: 'type_ProduitId',
 } as const;
 
 export type ProduitScalarFieldEnum =
@@ -245,8 +244,7 @@ export type Produit_PanierOrderByRelevanceFieldEnum =
 
 export const ProduitOrderByRelevanceFieldEnum = {
   id: 'id',
-  typeproduitId: 'typeproduitId',
-  type_ProduitId: 'type_ProduitId',
+  typeProduitId: 'typeProduitId',
 } as const;
 
 export type ProduitOrderByRelevanceFieldEnum =

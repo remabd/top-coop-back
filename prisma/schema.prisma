@@ -69,13 +69,12 @@ model Produit_Panier {
 
 model Produit {
   id             String           @id @default(uuid())
-  typeProduit    Type_Produit     @relation(fields: [type_ProduitId], references: [id])
-  typeproduitId  String
+  typeProduit    Type_Produit     @relation(fields: [typeProduitId], references: [id])
+  typeProduitId  String
   quantite       Float
   dateArrive     DateTime
   dateSortie     DateTime
   datePeremption DateTime
-  type_ProduitId String
   produitPaniers Produit_Panier[]
 }
 

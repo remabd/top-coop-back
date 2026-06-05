@@ -36,32 +36,29 @@ export type ProduitSumAggregateOutputType = {
 
 export type ProduitMinAggregateOutputType = {
   id: string | null;
-  typeproduitId: string | null;
+  typeProduitId: string | null;
   quantite: number | null;
   dateArrive: Date | null;
   dateSortie: Date | null;
   datePeremption: Date | null;
-  type_ProduitId: string | null;
 };
 
 export type ProduitMaxAggregateOutputType = {
   id: string | null;
-  typeproduitId: string | null;
+  typeProduitId: string | null;
   quantite: number | null;
   dateArrive: Date | null;
   dateSortie: Date | null;
   datePeremption: Date | null;
-  type_ProduitId: string | null;
 };
 
 export type ProduitCountAggregateOutputType = {
   id: number;
-  typeproduitId: number;
+  typeProduitId: number;
   quantite: number;
   dateArrive: number;
   dateSortie: number;
   datePeremption: number;
-  type_ProduitId: number;
   _all: number;
 };
 
@@ -75,32 +72,29 @@ export type ProduitSumAggregateInputType = {
 
 export type ProduitMinAggregateInputType = {
   id?: true;
-  typeproduitId?: true;
+  typeProduitId?: true;
   quantite?: true;
   dateArrive?: true;
   dateSortie?: true;
   datePeremption?: true;
-  type_ProduitId?: true;
 };
 
 export type ProduitMaxAggregateInputType = {
   id?: true;
-  typeproduitId?: true;
+  typeProduitId?: true;
   quantite?: true;
   dateArrive?: true;
   dateSortie?: true;
   datePeremption?: true;
-  type_ProduitId?: true;
 };
 
 export type ProduitCountAggregateInputType = {
   id?: true;
-  typeproduitId?: true;
+  typeProduitId?: true;
   quantite?: true;
   dateArrive?: true;
   dateSortie?: true;
   datePeremption?: true;
-  type_ProduitId?: true;
   _all?: true;
 };
 
@@ -199,12 +193,11 @@ export type ProduitGroupByArgs<
 
 export type ProduitGroupByOutputType = {
   id: string;
-  typeproduitId: string;
+  typeProduitId: string;
   quantite: number;
   dateArrive: Date;
   dateSortie: Date;
   datePeremption: Date;
-  type_ProduitId: string;
   _count: ProduitCountAggregateOutputType | null;
   _avg: ProduitAvgAggregateOutputType | null;
   _sum: ProduitSumAggregateOutputType | null;
@@ -230,12 +223,11 @@ export type ProduitWhereInput = {
   OR?: Prisma.ProduitWhereInput[];
   NOT?: Prisma.ProduitWhereInput | Prisma.ProduitWhereInput[];
   id?: Prisma.StringFilter<'Produit'> | string;
-  typeproduitId?: Prisma.StringFilter<'Produit'> | string;
+  typeProduitId?: Prisma.StringFilter<'Produit'> | string;
   quantite?: Prisma.FloatFilter<'Produit'> | number;
   dateArrive?: Prisma.DateTimeFilter<'Produit'> | Date | string;
   dateSortie?: Prisma.DateTimeFilter<'Produit'> | Date | string;
   datePeremption?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-  type_ProduitId?: Prisma.StringFilter<'Produit'> | string;
   typeProduit?: Prisma.XOR<
     Prisma.Type_ProduitScalarRelationFilter,
     Prisma.Type_ProduitWhereInput
@@ -245,12 +237,11 @@ export type ProduitWhereInput = {
 
 export type ProduitOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
-  typeproduitId?: Prisma.SortOrder;
+  typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
   dateSortie?: Prisma.SortOrder;
   datePeremption?: Prisma.SortOrder;
-  type_ProduitId?: Prisma.SortOrder;
   typeProduit?: Prisma.Type_ProduitOrderByWithRelationInput;
   produitPaniers?: Prisma.Produit_PanierOrderByRelationAggregateInput;
   _relevance?: Prisma.ProduitOrderByRelevanceInput;
@@ -262,12 +253,11 @@ export type ProduitWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.ProduitWhereInput | Prisma.ProduitWhereInput[];
     OR?: Prisma.ProduitWhereInput[];
     NOT?: Prisma.ProduitWhereInput | Prisma.ProduitWhereInput[];
-    typeproduitId?: Prisma.StringFilter<'Produit'> | string;
+    typeProduitId?: Prisma.StringFilter<'Produit'> | string;
     quantite?: Prisma.FloatFilter<'Produit'> | number;
     dateArrive?: Prisma.DateTimeFilter<'Produit'> | Date | string;
     dateSortie?: Prisma.DateTimeFilter<'Produit'> | Date | string;
     datePeremption?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-    type_ProduitId?: Prisma.StringFilter<'Produit'> | string;
     typeProduit?: Prisma.XOR<
       Prisma.Type_ProduitScalarRelationFilter,
       Prisma.Type_ProduitWhereInput
@@ -279,12 +269,11 @@ export type ProduitWhereUniqueInput = Prisma.AtLeast<
 
 export type ProduitOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
-  typeproduitId?: Prisma.SortOrder;
+  typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
   dateSortie?: Prisma.SortOrder;
   datePeremption?: Prisma.SortOrder;
-  type_ProduitId?: Prisma.SortOrder;
   _count?: Prisma.ProduitCountOrderByAggregateInput;
   _avg?: Prisma.ProduitAvgOrderByAggregateInput;
   _max?: Prisma.ProduitMaxOrderByAggregateInput;
@@ -301,7 +290,7 @@ export type ProduitScalarWhereWithAggregatesInput = {
     | Prisma.ProduitScalarWhereWithAggregatesInput
     | Prisma.ProduitScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'Produit'> | string;
-  typeproduitId?: Prisma.StringWithAggregatesFilter<'Produit'> | string;
+  typeProduitId?: Prisma.StringWithAggregatesFilter<'Produit'> | string;
   quantite?: Prisma.FloatWithAggregatesFilter<'Produit'> | number;
   dateArrive?: Prisma.DateTimeWithAggregatesFilter<'Produit'> | Date | string;
   dateSortie?: Prisma.DateTimeWithAggregatesFilter<'Produit'> | Date | string;
@@ -309,12 +298,10 @@ export type ProduitScalarWhereWithAggregatesInput = {
     | Prisma.DateTimeWithAggregatesFilter<'Produit'>
     | Date
     | string;
-  type_ProduitId?: Prisma.StringWithAggregatesFilter<'Produit'> | string;
 };
 
 export type ProduitCreateInput = {
   id?: string;
-  typeproduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
@@ -325,18 +312,16 @@ export type ProduitCreateInput = {
 
 export type ProduitUncheckedCreateInput = {
   id?: string;
-  typeproduitId: string;
+  typeProduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
   datePeremption: Date | string;
-  type_ProduitId: string;
   produitPaniers?: Prisma.Produit_PanierUncheckedCreateNestedManyWithoutProduitInput;
 };
 
 export type ProduitUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -347,28 +332,25 @@ export type ProduitUpdateInput = {
 
 export type ProduitUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
+  typeProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  type_ProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   produitPaniers?: Prisma.Produit_PanierUncheckedUpdateManyWithoutProduitNestedInput;
 };
 
 export type ProduitCreateManyInput = {
   id?: string;
-  typeproduitId: string;
+  typeProduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
   datePeremption: Date | string;
-  type_ProduitId: string;
 };
 
 export type ProduitUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -377,12 +359,11 @@ export type ProduitUpdateManyMutationInput = {
 
 export type ProduitUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
+  typeProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  type_ProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type ProduitScalarRelationFilter = {
@@ -400,12 +381,11 @@ export type ProduitOrderByRelevanceInput = {
 
 export type ProduitCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  typeproduitId?: Prisma.SortOrder;
+  typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
   dateSortie?: Prisma.SortOrder;
   datePeremption?: Prisma.SortOrder;
-  type_ProduitId?: Prisma.SortOrder;
 };
 
 export type ProduitAvgOrderByAggregateInput = {
@@ -414,22 +394,20 @@ export type ProduitAvgOrderByAggregateInput = {
 
 export type ProduitMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  typeproduitId?: Prisma.SortOrder;
+  typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
   dateSortie?: Prisma.SortOrder;
   datePeremption?: Prisma.SortOrder;
-  type_ProduitId?: Prisma.SortOrder;
 };
 
 export type ProduitMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  typeproduitId?: Prisma.SortOrder;
+  typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
   dateSortie?: Prisma.SortOrder;
   datePeremption?: Prisma.SortOrder;
-  type_ProduitId?: Prisma.SortOrder;
 };
 
 export type ProduitSumOrderByAggregateInput = {
@@ -568,7 +546,6 @@ export type ProduitUncheckedUpdateManyWithoutTypeProduitNestedInput = {
 
 export type ProduitCreateWithoutProduitPaniersInput = {
   id?: string;
-  typeproduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
@@ -578,12 +555,11 @@ export type ProduitCreateWithoutProduitPaniersInput = {
 
 export type ProduitUncheckedCreateWithoutProduitPaniersInput = {
   id?: string;
-  typeproduitId: string;
+  typeProduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
   datePeremption: Date | string;
-  type_ProduitId: string;
 };
 
 export type ProduitCreateOrConnectWithoutProduitPaniersInput = {
@@ -616,7 +592,6 @@ export type ProduitUpdateToOneWithWhereWithoutProduitPaniersInput = {
 
 export type ProduitUpdateWithoutProduitPaniersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -626,17 +601,15 @@ export type ProduitUpdateWithoutProduitPaniersInput = {
 
 export type ProduitUncheckedUpdateWithoutProduitPaniersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
+  typeProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  type_ProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 export type ProduitCreateWithoutTypeProduitInput = {
   id?: string;
-  typeproduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
@@ -646,7 +619,6 @@ export type ProduitCreateWithoutTypeProduitInput = {
 
 export type ProduitUncheckedCreateWithoutTypeProduitInput = {
   id?: string;
-  typeproduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
@@ -702,17 +674,15 @@ export type ProduitScalarWhereInput = {
   OR?: Prisma.ProduitScalarWhereInput[];
   NOT?: Prisma.ProduitScalarWhereInput | Prisma.ProduitScalarWhereInput[];
   id?: Prisma.StringFilter<'Produit'> | string;
-  typeproduitId?: Prisma.StringFilter<'Produit'> | string;
+  typeProduitId?: Prisma.StringFilter<'Produit'> | string;
   quantite?: Prisma.FloatFilter<'Produit'> | number;
   dateArrive?: Prisma.DateTimeFilter<'Produit'> | Date | string;
   dateSortie?: Prisma.DateTimeFilter<'Produit'> | Date | string;
   datePeremption?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-  type_ProduitId?: Prisma.StringFilter<'Produit'> | string;
 };
 
 export type ProduitCreateManyTypeProduitInput = {
   id?: string;
-  typeproduitId: string;
   quantite: number;
   dateArrive: Date | string;
   dateSortie: Date | string;
@@ -721,7 +691,6 @@ export type ProduitCreateManyTypeProduitInput = {
 
 export type ProduitUpdateWithoutTypeProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -731,7 +700,6 @@ export type ProduitUpdateWithoutTypeProduitInput = {
 
 export type ProduitUncheckedUpdateWithoutTypeProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -741,7 +709,6 @@ export type ProduitUncheckedUpdateWithoutTypeProduitInput = {
 
 export type ProduitUncheckedUpdateManyWithoutTypeProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  typeproduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -792,12 +759,11 @@ export type ProduitSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    typeproduitId?: boolean;
+    typeProduitId?: boolean;
     quantite?: boolean;
     dateArrive?: boolean;
     dateSortie?: boolean;
     datePeremption?: boolean;
-    type_ProduitId?: boolean;
     typeProduit?: boolean | Prisma.Type_ProduitDefaultArgs<ExtArgs>;
     produitPaniers?: boolean | Prisma.Produit$produitPaniersArgs<ExtArgs>;
     _count?: boolean | Prisma.ProduitCountOutputTypeDefaultArgs<ExtArgs>;
@@ -807,12 +773,11 @@ export type ProduitSelect<
 
 export type ProduitSelectScalar = {
   id?: boolean;
-  typeproduitId?: boolean;
+  typeProduitId?: boolean;
   quantite?: boolean;
   dateArrive?: boolean;
   dateSortie?: boolean;
   datePeremption?: boolean;
-  type_ProduitId?: boolean;
 };
 
 export type ProduitOmit<
@@ -820,12 +785,11 @@ export type ProduitOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   | 'id'
-  | 'typeproduitId'
+  | 'typeProduitId'
   | 'quantite'
   | 'dateArrive'
   | 'dateSortie'
-  | 'datePeremption'
-  | 'type_ProduitId',
+  | 'datePeremption',
   ExtArgs['result']['produit']
 >;
 export type ProduitInclude<
@@ -849,12 +813,11 @@ export type $ProduitPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
-      typeproduitId: string;
+      typeProduitId: string;
       quantite: number;
       dateArrive: Date;
       dateSortie: Date;
       datePeremption: Date;
-      type_ProduitId: string;
     },
     ExtArgs['result']['produit']
   >;
@@ -1401,12 +1364,11 @@ export interface Prisma__ProduitClient<
  */
 export interface ProduitFieldRefs {
   readonly id: Prisma.FieldRef<'Produit', 'String'>;
-  readonly typeproduitId: Prisma.FieldRef<'Produit', 'String'>;
+  readonly typeProduitId: Prisma.FieldRef<'Produit', 'String'>;
   readonly quantite: Prisma.FieldRef<'Produit', 'Float'>;
   readonly dateArrive: Prisma.FieldRef<'Produit', 'DateTime'>;
   readonly dateSortie: Prisma.FieldRef<'Produit', 'DateTime'>;
   readonly datePeremption: Prisma.FieldRef<'Produit', 'DateTime'>;
-  readonly type_ProduitId: Prisma.FieldRef<'Produit', 'String'>;
 }
 
 // Custom InputTypes
