@@ -68,6 +68,10 @@ export class UtilisateurService {
   }): Promise<Utilisateur> {
     const { where, data } = params;
     try {
+      if (data.motDePasse) {
+        const mdp = data.motDePasse as string;
+        data.motDePasse = await bcrypt.hash(mdp, this.SALT);
+      }
       return await this.prisma.utilisateur.update({
         data,
         where,
