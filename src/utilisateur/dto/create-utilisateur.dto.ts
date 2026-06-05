@@ -1,13 +1,3 @@
-import { Role } from 'src/generated/prisma/enums';
+import { Utilisateur } from 'src/generated/prisma/client';
 
-export class CreateUtilisateurDto {
-  nom: string;
-  prenom: string;
-  email: string;
-  adresse: string;
-  codePostal: string;
-  ville: string;
-  motDePasse: string;
-  role: Role;
-  dateCreation: string;
-}
+export type CreateUtilisateurDto = Omit<Utilisateur, 'id' | 'dateCreation'>;

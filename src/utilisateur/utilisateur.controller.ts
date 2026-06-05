@@ -8,8 +8,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UtilisateurService } from './utilisateur.service';
-import { CreateUtilisateurDto } from './dto/create-utilisateur.dto';
-import { UpdateUtilisateurDto } from './dto/update-utilisateur.dto';
+import type { CreateUtilisateurDto } from './dto/create-utilisateur.dto';
+import type { UpdateUtilisateurDto } from './dto/update-utilisateur.dto';
 
 @Controller('utilisateur')
 export class UtilisateurController {
@@ -31,7 +31,7 @@ export class UtilisateurController {
   }
 
   @Patch(':id')
-  modifier(
+  modifie(
     @Param('id') id: string,
     @Body() updateUtilisateurDto: UpdateUtilisateurDto,
   ) {
@@ -42,7 +42,7 @@ export class UtilisateurController {
   }
 
   @Delete(':id')
-  supprimer(@Param('id') id: string) {
+  supprime(@Param('id') id: string) {
     return this.utilisateurService.supprimeUtilisateur({ id });
   }
 }
