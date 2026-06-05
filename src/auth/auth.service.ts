@@ -27,7 +27,11 @@ export class AuthService {
     } catch (e) {
       throw new InternalServerErrorException(e);
     }
-    const payload = { sub: utilisateur.id, email: utilisateur.email };
+    const payload = {
+      sub: utilisateur.id,
+      email: utilisateur.email,
+      role: utilisateur.role,
+    };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
