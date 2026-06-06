@@ -8,8 +8,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { CreneauService } from './creneau.service';
-import type { CreateCreneauDto } from './dto/create-creneau.dto';
-import type { UpdateCreneauDto } from './dto/update-creneau.dto';
+import { CreateCreneauDto } from './dto/create-creneau.dto';
+import { UpdateCreneauDto } from './dto/update-creneau.dto';
 
 @Controller('creneau')
 export class CreneauController {

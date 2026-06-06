@@ -1,3 +1,4 @@
+import { PartialType } from '@nestjs/mapped-types';
 import { CreateCreneauDto } from './create-creneau.dto';
 
-export type UpdateCreneauDto = Partial<CreateCreneauDto>;
+export class UpdateCreneauDto extends PartialType(CreateCreneauDto) {}
