@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Creneau, Prisma } from '../generated/prisma/client';
 import { CreneauWhereUniqueInput } from '../generated/prisma/models';
 import { PrismaService } from '../prisma.service';
@@ -14,44 +10,23 @@ export class CreneauService {
   async creneau(
     creneauWhereUniqueInput: CreneauWhereUniqueInput,
   ): Promise<Creneau> {
-    try {
-      return await this.prisma.creneau.findUniqueOrThrow({
-        where: creneauWhereUniqueInput,
-      });
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError)
-        if (e.code === 'P2025') {
-          throw new NotFoundException();
-        }
-      throw e;
-    }
+    return this.prisma.creneau.findUniqueOrThrow({
+      where: creneauWhereUniqueInput,
+    });
   }
-  async creneaux(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.CreneauWhereUniqueInput;
-    where?: Prisma.CreneauWhereInput;
-    orderBy?: Prisma.CreneauOrderByWithRelationInput;
-  }): Promise<Creneau[]> {
-    const { skip, take, cursor, where, orderBy } = params;
+
+  async creneaux(): Promise<Creneau[]> {
     return this.prisma.creneau.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-      orderBy,
+      skip: undefined,
+      take: undefined,
+      cursor: undefined,
+      where: undefined,
+      orderBy: undefined,
     });
   }
 
   async creeCreneau(data: Prisma.CreneauCreateInput): Promise<Creneau> {
-    try {
-      return await this.prisma.creneau.create({ data });
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError) {
-        if (e.code === 'P2002') throw new ConflictException();
-      }
-      throw e;
-    }
+    return this.prisma.creneau.create({ data });
   }
 
   async modifieCreneau(params: {
@@ -59,33 +34,17 @@ export class CreneauService {
     data: Prisma.CreneauUpdateInput;
   }): Promise<Creneau> {
     const { where, data } = params;
-    try {
-      return await this.prisma.creneau.update({
-        data,
-        where,
-      });
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError)
-        if (e.code === 'P2025') {
-          throw new NotFoundException();
-        }
-      throw e;
-    }
+    return this.prisma.creneau.update({
+      data,
+      where,
+    });
   }
 
   async supprimeCreneau(
     where: Prisma.CreneauWhereUniqueInput,
   ): Promise<Creneau> {
-    try {
-      return await this.prisma.creneau.delete({
-        where,
-      });
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError)
-        if (e.code === 'P2025') {
-          throw new NotFoundException();
-        }
-      throw e;
-    }
+    return this.prisma.creneau.delete({
+      where,
+    });
   }
 }

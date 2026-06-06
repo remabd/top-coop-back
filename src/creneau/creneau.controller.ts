@@ -22,7 +22,7 @@ export class CreneauController {
 
   @Get()
   tous() {
-    return this.creneauService.creneaux({});
+    return this.creneauService.creneaux();
   }
 
   @Get(':id')
