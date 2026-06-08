@@ -21,8 +21,6 @@ export class PrismaExceptionFilter
 
   catch(e: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
     const Ex = this.map[e.code];
-    // Map known Prisma errors to HTTP exceptions, otherwise let the base
-    // filter handle it (renders as a 500).
     super.catch(Ex ? new Ex() : e, host);
   }
 }
