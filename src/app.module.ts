@@ -8,6 +8,7 @@ import { CreneauModule } from './creneau/creneau.module';
 import { PrismaExceptionFilter } from './prisma.exception';
 import { PrismaModule } from './prisma.module';
 import { ParticipationModule } from './participation/participation.module';
+import { CommandeModule } from './commande/commande.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ParticipationModule } from './participation/participation.module';
     CreneauModule,
     PrismaModule,
     ParticipationModule,
+    CommandeModule,
   ],
   controllers: [AppController],
   providers: [

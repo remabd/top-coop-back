@@ -19,25 +19,25 @@ export class ParticipationController {
 
   @RoleDecorator(Role.ADMIN)
   @Post()
-  create(@Body() createParticipationDto: CreateParticipationDto) {
+  cree(@Body() createParticipationDto: CreateParticipationDto) {
     return this.participationService.cree(createParticipationDto);
   }
 
   @RoleDecorator(Role.ADMIN)
   @Get()
-  findAll() {
+  tous() {
     return this.participationService.participations();
   }
 
   @RoleDecorator(Role.ADMIN)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  un(@Param('id') id: string) {
     return this.participationService.participation({ id });
   }
 
   @RoleDecorator(Role.ADMIN)
   @Patch(':id')
-  update(
+  modifie(
     @Param('id') id: string,
     @Body() updateParticipationDto: UpdateParticipationDto,
   ) {
@@ -49,7 +49,7 @@ export class ParticipationController {
 
   @RoleDecorator(Role.ADMIN)
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  supprime(@Param('id') id: string) {
     return this.participationService.supprime({ id });
   }
 }

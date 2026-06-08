@@ -19,8 +19,8 @@ export class CreneauController {
 
   @RoleDecorator(Role.ADMIN)
   @Post()
-  create(@Body() createCreneauDto: CreateCreneauDto) {
-    return this.creneauService.creeCreneau(createCreneauDto);
+  cree(@Body() createCreneauDto: CreateCreneauDto) {
+    return this.creneauService.cree(createCreneauDto);
   }
 
   @RoleDecorator(Role.ADMIN)
@@ -38,7 +38,7 @@ export class CreneauController {
   @RoleDecorator(Role.ADMIN)
   @Patch(':id')
   modifie(@Param('id') id: string, @Body() updateCreneauDto: UpdateCreneauDto) {
-    return this.creneauService.modifieCreneau({
+    return this.creneauService.modifie({
       where: { id },
       data: updateCreneauDto,
     });
@@ -47,6 +47,6 @@ export class CreneauController {
   @RoleDecorator(Role.ADMIN)
   @Delete(':id')
   supprime(@Param('id') id: string) {
-    return this.creneauService.supprimeCreneau({ id });
+    return this.creneauService.supprime({ id });
   }
 }

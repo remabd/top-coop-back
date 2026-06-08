@@ -19,8 +19,8 @@ export class UtilisateurController {
 
   @RoleDecorator(Role.ADMIN)
   @Post()
-  async creer(@Body() utilisateur: CreateUtilisateurDto) {
-    return this.utilisateurService.creeUtilisateur(utilisateur);
+  async cree(@Body() utilisateur: CreateUtilisateurDto) {
+    return this.utilisateurService.cree(utilisateur);
   }
 
   @RoleDecorator(Role.ADMIN)
@@ -41,7 +41,7 @@ export class UtilisateurController {
     @Param('id') id: string,
     @Body() updateUtilisateurDto: UpdateUtilisateurDto,
   ) {
-    return this.utilisateurService.modifieUtilisateur({
+    return this.utilisateurService.modifie({
       where: { id },
       data: updateUtilisateurDto,
     });
@@ -50,6 +50,6 @@ export class UtilisateurController {
   @RoleDecorator(Role.ADMIN)
   @Delete(':id')
   supprime(@Param('id') id: string) {
-    return this.utilisateurService.supprimeUtilisateur({ id });
+    return this.utilisateurService.supprime({ id });
   }
 }

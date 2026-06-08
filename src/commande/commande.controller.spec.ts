@@ -1,19 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreneauController } from './creneau.controller';
-import { CreneauService } from './creneau.service';
+import { CommandeController } from './commande.controller';
+import { CommandeService } from './commande.service';
 
-describe('CreneauController', () => {
-  let controller: CreneauController;
+describe('CommandeController', () => {
+  let controller: CommandeController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [CreneauController],
+      controllers: [CommandeController],
       providers: [
         {
-          provide: CreneauService,
+          provide: CommandeService,
           useValue: {
-            creneau: jest.fn(),
-            creneaux: jest.fn(),
+            commande: jest.fn(),
+            commandes: jest.fn(),
             cree: jest.fn(),
             supprime: jest.fn(),
             modifie: jest.fn(),
@@ -22,7 +22,7 @@ describe('CreneauController', () => {
       ],
     }).compile();
 
-    controller = module.get<CreneauController>(CreneauController);
+    controller = module.get<CommandeController>(CommandeController);
   });
 
   it('should be defined', () => {

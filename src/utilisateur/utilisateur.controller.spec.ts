@@ -14,9 +14,9 @@ describe('UtilisateurController', () => {
           useValue: {
             utilisateur: jest.fn(),
             utilisateurs: jest.fn(),
-            creer: jest.fn(),
-            supprimer: jest.fn(),
-            modifier: jest.fn(),
+            cree: jest.fn(),
+            supprime: jest.fn(),
+            modifie: jest.fn(),
           },
         },
       ],

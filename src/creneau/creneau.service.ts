@@ -19,11 +19,11 @@ export class CreneauService {
     return this.prisma.creneau.findMany();
   }
 
-  async creeCreneau(data: Prisma.CreneauCreateInput): Promise<Creneau> {
+  async cree(data: Prisma.CreneauCreateInput): Promise<Creneau> {
     return this.prisma.creneau.create({ data });
   }
 
-  async modifieCreneau(params: {
+  async modifie(params: {
     where: Prisma.CreneauWhereUniqueInput;
     data: Prisma.CreneauUpdateInput;
   }): Promise<Creneau> {
@@ -34,9 +34,7 @@ export class CreneauService {
     });
   }
 
-  async supprimeCreneau(
-    where: Prisma.CreneauWhereUniqueInput,
-  ): Promise<Creneau> {
+  async supprime(where: Prisma.CreneauWhereUniqueInput): Promise<Creneau> {
     return this.prisma.creneau.delete({
       where,
     });
