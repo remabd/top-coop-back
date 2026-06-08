@@ -16,13 +16,7 @@ export class CreneauService {
   }
 
   async creneaux(): Promise<Creneau[]> {
-    return this.prisma.creneau.findMany({
-      skip: undefined,
-      take: undefined,
-      cursor: undefined,
-      where: undefined,
-      orderBy: undefined,
-    });
+    return this.prisma.creneau.findMany({});
   }
 
   async creeCreneau(data: Prisma.CreneauCreateInput): Promise<Creneau> {
