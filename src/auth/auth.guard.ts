@@ -8,7 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY } from './auth.decorator';
 import { Reflector } from '@nestjs/core';
-import { Role } from 'src/generated/prisma/enums';
+import { Role } from '../generated/prisma/enums';
 
 export interface JwtPayload {
   sub: number;

@@ -10,8 +10,8 @@ import {
 import { CreneauService } from './creneau.service';
 import { CreateCreneauDto } from './dto/create-creneau.dto';
 import { UpdateCreneauDto } from './dto/update-creneau.dto';
-import { RoleDecorator } from 'src/auth/role.decorator';
-import { Role } from 'src/generated/prisma/enums';
+import { RoleDecorator } from '../auth/role.decorator';
+import { Role } from '../generated/prisma/enums';
 
 @Controller('creneau')
 export class CreneauController {

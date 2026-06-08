@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Utilisateur, Prisma } from '../generated/prisma/client';
-import { UtilisateurWhereUniqueInput } from 'src/generated/prisma/models';
+import { UtilisateurWhereUniqueInput } from '../generated/prisma/models';
 import * as bcrypt from 'bcrypt';
 import 'dotenv/config';
 
