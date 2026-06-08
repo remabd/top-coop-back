@@ -12,6 +12,7 @@ import { CommandeModule } from './commande/commande.module';
 import { TypeProduitModule } from './type-produit/type-produit.module';
 import { CommandeProduitModule } from './commande-produit/commande-produit.module';
 import { ProduitModule } from './produit/produit.module';
+import { PanierModule } from './panier/panier.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ProduitModule } from './produit/produit.module';
     TypeProduitModule,
     CommandeProduitModule,
     ProduitModule,
+    PanierModule,
   ],
   controllers: [AppController],
   providers: [
