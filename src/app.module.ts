@@ -10,6 +10,7 @@ import { PrismaModule } from './prisma.module';
 import { ParticipationModule } from './participation/participation.module';
 import { CommandeModule } from './commande/commande.module';
 import { TypeProduitModule } from './type-produit/type-produit.module';
+import { CommandeProduitModule } from './commande-produit/commande-produit.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { TypeProduitModule } from './type-produit/type-produit.module';
     ParticipationModule,
     CommandeModule,
     TypeProduitModule,
+    CommandeProduitModule,
   ],
   controllers: [AppController],
   providers: [
