@@ -11,6 +11,7 @@ import { ParticipationModule } from './participation/participation.module';
 import { CommandeModule } from './commande/commande.module';
 import { TypeProduitModule } from './type-produit/type-produit.module';
 import { CommandeProduitModule } from './commande-produit/commande-produit.module';
+import { ProduitModule } from './produit/produit.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CommandeProduitModule } from './commande-produit/commande-produit.modul
     CommandeModule,
     TypeProduitModule,
     CommandeProduitModule,
+    ProduitModule,
   ],
   controllers: [AppController],
   providers: [
