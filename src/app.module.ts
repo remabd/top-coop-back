@@ -7,9 +7,16 @@ import { AuthModule } from './auth/auth.module';
 import { CreneauModule } from './creneau/creneau.module';
 import { PrismaExceptionFilter } from './prisma.exception';
 import { PrismaModule } from './prisma.module';
+import { ParticipationModule } from './participation/participation.module';
 
 @Module({
-  imports: [UtilisateurModule, AuthModule, CreneauModule, PrismaModule],
+  imports: [
+    UtilisateurModule,
+    AuthModule,
+    CreneauModule,
+    PrismaModule,
+    ParticipationModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
