@@ -9,6 +9,7 @@ import { PrismaExceptionFilter } from './prisma.exception';
 import { PrismaModule } from './prisma.module';
 import { ParticipationModule } from './participation/participation.module';
 import { CommandeModule } from './commande/commande.module';
+import { TypeProduitModule } from './type-produit/type-produit.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CommandeModule } from './commande/commande.module';
     PrismaModule,
     ParticipationModule,
     CommandeModule,
+    TypeProduitModule,
   ],
   controllers: [AppController],
   providers: [
