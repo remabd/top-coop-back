@@ -18,21 +18,8 @@ export class UtilisateurService {
     });
   }
 
-  async utilisateurs(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.UtilisateurWhereUniqueInput;
-    where?: Prisma.UtilisateurWhereInput;
-    orderBy?: Prisma.UtilisateurOrderByWithRelationInput;
-  }): Promise<Utilisateur[]> {
-    const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.utilisateur.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-      orderBy,
-    });
+  async utilisateurs(): Promise<Utilisateur[]> {
+    return this.prisma.utilisateur.findMany();
   }
 
   async creeUtilisateur(

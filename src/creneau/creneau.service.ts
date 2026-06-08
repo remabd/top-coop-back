@@ -16,7 +16,7 @@ export class CreneauService {
   }
 
   async creneaux(): Promise<Creneau[]> {
-    return this.prisma.creneau.findMany({});
+    return this.prisma.creneau.findMany();
   }
 
   async creeCreneau(data: Prisma.CreneauCreateInput): Promise<Creneau> {
