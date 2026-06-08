@@ -6,9 +6,10 @@ import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AuthModule } from './auth/auth.module';
 import { CreneauModule } from './creneau/creneau.module';
 import { PrismaExceptionFilter } from './prisma.exception';
+import { PrismaModule } from './prisma.module';
 
 @Module({
-  imports: [UtilisateurModule, AuthModule, CreneauModule],
+  imports: [UtilisateurModule, AuthModule, CreneauModule, PrismaModule],
   controllers: [AppController],
   providers: [
     AppService,
