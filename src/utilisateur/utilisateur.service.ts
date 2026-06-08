@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Utilisateur, Prisma } from '../generated/prisma/client';
-import { UtilisateurWhereUniqueInput } from '../generated/prisma/models';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -10,7 +9,7 @@ export class UtilisateurService {
   constructor(private prisma: PrismaService) {}
 
   async utilisateur(
-    utilisateurWhereUniqueInput: UtilisateurWhereUniqueInput,
+    utilisateurWhereUniqueInput: Prisma.UtilisateurWhereUniqueInput,
   ): Promise<Utilisateur> {
     return this.prisma.utilisateur.findUniqueOrThrow({
       where: utilisateurWhereUniqueInput,
