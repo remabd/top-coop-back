@@ -10,8 +10,8 @@ import {
 import { UtilisateurService } from './utilisateur.service';
 import { CreateUtilisateurDto } from './dto/create-utilisateur.dto';
 import { UpdateUtilisateurDto } from './dto/update-utilisateur.dto';
-import { RoleDecorator } from 'src/auth/role.decorator';
-import { Role } from 'src/generated/prisma/enums';
+import { RoleDecorator } from '../auth/role.decorator';
+import { Role } from '../generated/prisma/enums';
 
 @Controller('utilisateur')
 export class UtilisateurController {
