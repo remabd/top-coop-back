@@ -14,9 +14,9 @@ describe('CreneauController', () => {
           useValue: {
             creneau: jest.fn(),
             creneaux: jest.fn(),
-            creeCreneau: jest.fn(),
-            supprimeCreneau: jest.fn(),
-            modifieCreneau: jest.fn(),
+            cree: jest.fn(),
+            supprime: jest.fn(),
+            modifie: jest.fn(),
           },
         },
       ],

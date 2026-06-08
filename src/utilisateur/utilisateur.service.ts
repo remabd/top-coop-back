@@ -20,14 +20,12 @@ export class UtilisateurService {
     return this.prisma.utilisateur.findMany();
   }
 
-  async creeUtilisateur(
-    data: Prisma.UtilisateurCreateInput,
-  ): Promise<Utilisateur> {
+  async cree(data: Prisma.UtilisateurCreateInput): Promise<Utilisateur> {
     data.motDePasse = await bcrypt.hash(data.motDePasse, this.SALT);
     return this.prisma.utilisateur.create({ data });
   }
 
-  async modifieUtilisateur(params: {
+  async modifie(params: {
     where: Prisma.UtilisateurWhereUniqueInput;
     data: Prisma.UtilisateurUpdateInput;
   }): Promise<Utilisateur> {
@@ -42,7 +40,7 @@ export class UtilisateurService {
     });
   }
 
-  async supprimeUtilisateur(
+  async supprime(
     where: Prisma.UtilisateurWhereUniqueInput,
   ): Promise<Utilisateur> {
     return this.prisma.utilisateur.delete({
