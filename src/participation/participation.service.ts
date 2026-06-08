@@ -37,8 +37,12 @@ export class ParticipationService {
     return this.prisma.participation.update({
       where,
       data: {
-        utilisateur: { connect: { id: data.utilisateurId } },
-        creneau: { connect: { id: data.creneauId } },
+        ...(data.utilisateurId && {
+          utilisateur: { connect: { id: data.utilisateurId } },
+        }),
+        ...(data.creneauId && {
+          creneau: { connect: { id: data.creneauId } },
+        }),
       },
     });
   }
