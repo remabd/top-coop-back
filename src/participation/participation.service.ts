@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Participation, Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma.service';
 import { CreateParticipationDto } from './dto/create-participation.dto';
 import { UpdateParticipationDto } from './dto/update-participation.dto';
+import { verifieAppartenance } from 'src/auth/appartenance';
+import { JwtPayload } from 'src/auth/auth.guard';
 
 @Injectable()
 export class ParticipationService {
@@ -50,6 +52,27 @@ export class ParticipationService {
   supprime(
     where: Prisma.ParticipationWhereUniqueInput,
   ): Promise<Participation> {
+    return this.prisma.participation.delete({ where });
+  }
+
+  async annule(
+    where: Prisma.ParticipationWhereUniqueInput,
+    utilisateur: JwtPayload | undefined,
+  ): Promise<Participation> {
+    const participation = await this.prisma.participation.findUniqueOrThrow({
+      where,
+      include: { creneau: true },
+    });
+    verifieAppartenance(participation.utilisateurId, utilisateur);
+    const DUREE_TROIS_JOURS = 3 * 24 * 60 * 60 * 1000;
+    if (
+      new Date().getTime() + DUREE_TROIS_JOURS >=
+      participation.creneau.dateDebut.getTime()
+    ) {
+      throw new ForbiddenException(
+        'Vous avez dépassé la date limite de suppression',
+      );
+    }
     return this.prisma.participation.delete({ where });
   }
 }
