@@ -86,7 +86,7 @@ export class ParticipationService {
       include: { creneau: true },
     });
     const MS_PAR_HEURE = 1000 * 60 * 60;
-    return participations
+    const aFaire = participations
       .filter(
         ({ creneau }) =>
           creneau.dateDebut.getMonth() === new Date().getMonth() &&
@@ -94,10 +94,11 @@ export class ParticipationService {
       )
       .reduce(
         (total, { creneau }) =>
-          total +
+          total -
           (creneau.dateFin.getTime() - creneau.dateDebut.getTime()) /
             MS_PAR_HEURE,
-        0,
+        3,
       );
+    return aFaire >= 0 ? aFaire : 0;
   }
 }
