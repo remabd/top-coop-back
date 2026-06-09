@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { CreneauService } from './creneau.service';
 import { CreateCreneauDto } from './dto/create-creneau.dto';
 import { UpdateCreneauDto } from './dto/update-creneau.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
+import type { AuthenticatedRequest } from 'src/auth/auth.guard';
 
 @Controller('creneau')
 export class CreneauController {
@@ -46,5 +48,10 @@ export class CreneauController {
   @Delete(':id')
   supprime(@Param('id') id: string) {
     return this.creneauService.supprime({ id });
+  }
+
+  @Get(':id')
+  avecDetails(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.creneauService.avecDetails({ id }, req.utilisateur);
   }
 }
