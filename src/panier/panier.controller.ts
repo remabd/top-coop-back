@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { PanierService } from './panier.service';
-import { CreatePanierDto } from './dto/create-panier.dto';
+import { CreatePanierDto, DtoVersPanierComplet } from './dto/create-panier.dto';
 import { UpdatePanierDto } from './dto/update-panier.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
+import type { AuthenticatedRequest } from 'src/auth/auth.guard';
 
 @Controller('panier')
 export class PanierController {
@@ -48,5 +50,13 @@ export class PanierController {
   @Delete(':id')
   supprime(@Param('id') id: string) {
     return this.panierService.supprime({ id });
+  }
+
+  @Post()
+  creePanierComplet(
+    @Body() data: DtoVersPanierComplet,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.panierService.creePanierComplet(data, req.utilisateur);
   }
 }
