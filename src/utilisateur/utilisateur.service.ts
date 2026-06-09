@@ -1,6 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import { Utilisateur, Prisma } from '../generated/prisma/client';
+import {
+  Utilisateur,
+  Prisma,
+  Participation,
+  Panier,
+} from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -46,5 +51,19 @@ export class UtilisateurService {
     return this.prisma.utilisateur.delete({
       where,
     });
+  }
+
+  async voirParticipations(
+    where: Prisma.UtilisateurWhereUniqueInput,
+  ): Promise<Participation[]> {
+    const utilisateur = this.prisma.utilisateur.findUniqueOrThrow({ where });
+    return utilisateur.participations();
+  }
+
+  async voirPaniers(
+    where: Prisma.UtilisateurWhereUniqueInput,
+  ): Promise<Panier[]> {
+    const utilisateur = this.prisma.utilisateur.findUniqueOrThrow({ where });
+    return utilisateur.paniers();
   }
 }
