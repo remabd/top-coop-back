@@ -23,13 +23,11 @@ export class CreneauController {
     return this.creneauService.cree(createCreneauDto);
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get()
   tous() {
     return this.creneauService.creneaux();
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
     return this.creneauService.creneau({ id });

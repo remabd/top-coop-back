@@ -52,4 +52,14 @@ export class UtilisateurController {
   supprime(@Param('id') id: string) {
     return this.utilisateurService.supprime({ id });
   }
+
+  @Get(':id')
+  voirParticipations(@Param('id') id: string) {
+    return this.utilisateurService.voirParticipations({ id });
+  }
+
+  @Get(':id')
+  voirPaniers(@Param('id') id: string) {
+    return this.utilisateurService.voirPaniers({ id });
+  }
 }
