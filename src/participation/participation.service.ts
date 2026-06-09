@@ -75,4 +75,29 @@ export class ParticipationService {
     }
     return this.prisma.participation.delete({ where });
   }
+
+  async aFaire(
+    id: string,
+    utilisateur: JwtPayload | undefined,
+  ): Promise<number> {
+    verifieAppartenance(id, utilisateur);
+    const participations = await this.prisma.participation.findMany({
+      where: { utilisateurId: id },
+      include: { creneau: true },
+    });
+    const MS_PAR_HEURE = 1000 * 60 * 60;
+    return participations
+      .filter(
+        ({ creneau }) =>
+          creneau.dateDebut.getMonth() === new Date().getMonth() &&
+          creneau.dateDebut.getFullYear() === new Date().getFullYear(),
+      )
+      .reduce(
+        (total, { creneau }) =>
+          total +
+          (creneau.dateFin.getTime() - creneau.dateDebut.getTime()) /
+            MS_PAR_HEURE,
+        0,
+      );
+  }
 }
