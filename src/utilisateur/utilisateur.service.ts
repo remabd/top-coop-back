@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import {
   Utilisateur,
@@ -7,6 +11,7 @@ import {
   Panier,
 } from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
+import { JwtPayload } from 'src/auth/auth.guard';
 
 @Injectable()
 export class UtilisateurService {
@@ -53,17 +58,38 @@ export class UtilisateurService {
     });
   }
 
+  verifieAppartenance(id: string, utilisateur: JwtPayload | undefined) {
+    if (!utilisateur) {
+      throw new UnauthorizedException('Authentification requise');
+    }
+    if (id !== utilisateur.sub) {
+      throw new ForbiddenException(
+        "Vous n'êtes pas autorisé à consulter ces informations",
+      );
+    }
+  }
+
   async voirParticipations(
-    where: Prisma.UtilisateurWhereUniqueInput,
+    id: string,
+    utilisateur: JwtPayload | undefined,
   ): Promise<Participation[]> {
-    const utilisateur = this.prisma.utilisateur.findUniqueOrThrow({ where });
-    return utilisateur.participations();
+    this.verifieAppartenance(id, utilisateur);
+    return this.prisma.participation.findMany({ where: { utilisateurId: id } });
   }
 
   async voirPaniers(
-    where: Prisma.UtilisateurWhereUniqueInput,
+    id: string,
+    utilisateur: JwtPayload | undefined,
   ): Promise<Panier[]> {
-    const utilisateur = this.prisma.utilisateur.findUniqueOrThrow({ where });
-    return utilisateur.paniers();
+    this.verifieAppartenance(id, utilisateur);
+    return this.prisma.panier.findMany({ where: { utilisateurId: id } });
+  }
+
+  async voirInfos(
+    id: string,
+    utilisateur: JwtPayload | undefined,
+  ): Promise<Utilisateur> {
+    this.verifieAppartenance(id, utilisateur);
+    return this.prisma.utilisateur.findUniqueOrThrow({ where: { id } });
   }
 }

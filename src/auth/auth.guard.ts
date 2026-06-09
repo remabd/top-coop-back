@@ -11,7 +11,7 @@ import { Reflector } from '@nestjs/core';
 import { Role } from '../generated/prisma/enums';
 
 export interface JwtPayload {
-  sub: number;
+  sub: string;
   email: string;
   role: Role;
 }
