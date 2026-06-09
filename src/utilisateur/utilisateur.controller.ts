@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { UtilisateurService } from './utilisateur.service';
 import { CreateUtilisateurDto } from './dto/create-utilisateur.dto';
 import { UpdateUtilisateurDto } from './dto/update-utilisateur.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
+import type { AuthenticatedRequest } from 'src/auth/auth.guard';
 
 @Controller('utilisateur')
 export class UtilisateurController {
@@ -54,12 +56,20 @@ export class UtilisateurController {
   }
 
   @Get(':id')
-  voirParticipations(@Param('id') id: string) {
-    return this.utilisateurService.voirParticipations({ id });
+  voirParticipations(
+    @Param('id') id: string,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.utilisateurService.voirParticipations(id, req.utilisateur);
   }
 
   @Get(':id')
-  voirPaniers(@Param('id') id: string) {
-    return this.utilisateurService.voirPaniers({ id });
+  voirPaniers(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.utilisateurService.voirPaniers(id, req.utilisateur);
+  }
+
+  @Get(':id')
+  voirInformations(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.utilisateurService.voirInfos(id, req.utilisateur);
   }
 }
