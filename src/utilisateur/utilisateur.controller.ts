@@ -13,7 +13,7 @@ import { CreateUtilisateurDto } from './dto/create-utilisateur.dto';
 import { UpdateUtilisateurDto } from './dto/update-utilisateur.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
-import type { AuthenticatedRequest } from 'src/auth/auth.guard';
+import type { AuthenticatedRequest } from '../auth/auth.guard';
 
 @Controller('utilisateur')
 export class UtilisateurController {

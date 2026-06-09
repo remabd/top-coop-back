@@ -7,8 +7,8 @@ import {
   Panier,
 } from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
-import { JwtPayload } from 'src/auth/auth.guard';
-import { verifieAppartenance } from 'src/auth/appartenance';
+import { JwtPayload } from '../auth/auth.guard';
+import { verifieAppartenance } from '../auth/appartenance';
 
 @Injectable()
 export class UtilisateurService {

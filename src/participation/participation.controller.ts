@@ -13,7 +13,7 @@ import { CreateParticipationDto } from './dto/create-participation.dto';
 import { UpdateParticipationDto } from './dto/update-participation.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
-import type { AuthenticatedRequest } from 'src/auth/auth.guard';
+import type { AuthenticatedRequest } from '../auth/auth.guard';
 
 @Controller('participation')
 export class ParticipationController {

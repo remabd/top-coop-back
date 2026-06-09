@@ -3,8 +3,8 @@ import { Participation, Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma.service';
 import { CreateParticipationDto } from './dto/create-participation.dto';
 import { UpdateParticipationDto } from './dto/update-participation.dto';
-import { verifieAppartenance } from 'src/auth/appartenance';
-import { JwtPayload } from 'src/auth/auth.guard';
+import { verifieAppartenance } from '../auth/appartenance';
+import { JwtPayload } from '../auth/auth.guard';
 
 @Injectable()
 export class ParticipationService {
