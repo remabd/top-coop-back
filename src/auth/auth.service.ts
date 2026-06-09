@@ -22,7 +22,7 @@ export class AuthService {
     try {
       const egal = await bcrypt.compare(motDePasse, utilisateur.motDePasse);
       if (!egal) {
-        throw new UnauthorizedException();
+        throw new UnauthorizedException('Email ou mot de passe incorrect');
       }
     } catch (e) {
       throw new InternalServerErrorException(e);
