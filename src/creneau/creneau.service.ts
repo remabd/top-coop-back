@@ -6,7 +6,7 @@ import {
 import { Creneau, Prisma } from '../generated/prisma/client';
 import { CreneauWhereUniqueInput } from '../generated/prisma/models';
 import { PrismaService } from '../prisma.service';
-import { JwtPayload } from 'src/auth/auth.guard';
+import { JwtPayload } from '../auth/auth.guard';
 
 @Injectable()
 export class CreneauService {

@@ -3,8 +3,8 @@ import { Panier, Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma.service';
 import { CreatePanierDto, DtoVersPanierComplet } from './dto/create-panier.dto';
 import { UpdatePanierDto } from './dto/update-panier.dto';
-import { JwtPayload } from 'src/auth/auth.guard';
-import { verifieAppartenance } from 'src/auth/appartenance';
+import { JwtPayload } from '../auth/auth.guard';
+import { verifieAppartenance } from '../auth/appartenance';
 
 @Injectable()
 export class PanierService {
