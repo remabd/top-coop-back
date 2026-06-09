@@ -13,7 +13,7 @@ import { CreateCreneauDto } from './dto/create-creneau.dto';
 import { UpdateCreneauDto } from './dto/update-creneau.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
-import type { AuthenticatedRequest } from 'src/auth/auth.guard';
+import type { AuthenticatedRequest } from '../auth/auth.guard';
 
 @Controller('creneau')
 export class CreneauController {
