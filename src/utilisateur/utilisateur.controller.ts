@@ -55,7 +55,7 @@ export class UtilisateurController {
     return this.utilisateurService.supprime({ id });
   }
 
-  @Get(':id')
+  @Get('participations/:id')
   voirParticipations(
     @Param('id') id: string,
     @Req() req: AuthenticatedRequest,
@@ -63,13 +63,19 @@ export class UtilisateurController {
     return this.utilisateurService.voirParticipations(id, req.utilisateur);
   }
 
-  @Get(':id')
+  @Get('paniers/:id')
   voirPaniers(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
     return this.utilisateurService.voirPaniers(id, req.utilisateur);
   }
 
-  @Get(':id')
+  @Get('informations/:id')
   voirInformations(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
     return this.utilisateurService.voirInfos(id, req.utilisateur);
+  }
+
+  @RoleDecorator(Role.ADMIN)
+  @Get('quota')
+  voirQuota() {
+    return this.utilisateurService.utilisateursAvecQuota();
   }
 }
