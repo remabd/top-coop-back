@@ -24,6 +24,12 @@ export class ProduitService {
     return this.prisma.produit.findMany();
   }
 
+  produitsAvecType(): Promise<Produit[]> {
+    return this.prisma.produit.findMany({
+      include: { typeProduit: true },
+    });
+  }
+
   produit(where: Prisma.ProduitWhereUniqueInput): Promise<Produit> {
     return this.prisma.produit.findUniqueOrThrow({ where });
   }
