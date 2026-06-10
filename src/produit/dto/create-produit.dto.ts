@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNumber, IsUUID, Min } from 'class-validator';
+import { IsDate, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
 
 export class CreateProduitDto {
   @IsUUID()
@@ -13,11 +13,13 @@ export class CreateProduitDto {
   @IsDate()
   dateArrive: Date;
 
+  @IsOptional()
   @Type(() => Date)
   @IsDate()
-  dateSortie: Date;
+  dateSortie?: Date;
 
+  @IsOptional()
   @Type(() => Date)
   @IsDate()
-  datePeremption: Date;
+  datePeremption?: Date;
 }
