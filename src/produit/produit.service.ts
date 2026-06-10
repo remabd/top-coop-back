@@ -3,6 +3,7 @@ import { Produit, Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma.service';
 import { CreateProduitDto } from './dto/create-produit.dto';
 import { UpdateProduitDto } from './dto/update-produit.dto';
+import { ProduitAvecType } from './dto/produit.type';
 
 @Injectable()
 export class ProduitService {
@@ -24,7 +25,7 @@ export class ProduitService {
     return this.prisma.produit.findMany();
   }
 
-  produitsAvecType(): Promise<Produit[]> {
+  produitsAvecType(): Promise<ProduitAvecType[]> {
     return this.prisma.produit.findMany({
       include: { typeProduit: true },
     });
