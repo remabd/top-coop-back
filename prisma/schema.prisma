@@ -14,7 +14,7 @@ model Creneau {
   dateDebut      DateTime
   dateFin        DateTime
   statut         Status
-  description    String
+  description    String?
   capacite       Int
   dateCreation   DateTime        @default(now())
   participations Participation[]
@@ -73,8 +73,8 @@ model Produit {
   typeProduitId  String
   quantite       Float
   dateArrive     DateTime
-  dateSortie     DateTime
-  datePeremption DateTime
+  dateSortie     DateTime?
+  datePeremption DateTime?
   produitPaniers Produit_Panier[]
 }
 

@@ -209,7 +209,7 @@ export type CreneauGroupByOutputType = {
   dateDebut: Date;
   dateFin: Date;
   statut: $Enums.Status;
-  description: string;
+  description: string | null;
   capacite: number;
   dateCreation: Date;
   _count: CreneauCountAggregateOutputType | null;
@@ -241,7 +241,7 @@ export type CreneauWhereInput = {
   dateDebut?: Prisma.DateTimeFilter<'Creneau'> | Date | string;
   dateFin?: Prisma.DateTimeFilter<'Creneau'> | Date | string;
   statut?: Prisma.EnumStatusFilter<'Creneau'> | $Enums.Status;
-  description?: Prisma.StringFilter<'Creneau'> | string;
+  description?: Prisma.StringNullableFilter<'Creneau'> | string | null;
   capacite?: Prisma.IntFilter<'Creneau'> | number;
   dateCreation?: Prisma.DateTimeFilter<'Creneau'> | Date | string;
   participations?: Prisma.ParticipationListRelationFilter;
@@ -253,7 +253,7 @@ export type CreneauOrderByWithRelationInput = {
   dateDebut?: Prisma.SortOrder;
   dateFin?: Prisma.SortOrder;
   statut?: Prisma.SortOrder;
-  description?: Prisma.SortOrder;
+  description?: Prisma.SortOrderInput | Prisma.SortOrder;
   capacite?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
   participations?: Prisma.ParticipationOrderByRelationAggregateInput;
@@ -270,7 +270,7 @@ export type CreneauWhereUniqueInput = Prisma.AtLeast<
     dateDebut?: Prisma.DateTimeFilter<'Creneau'> | Date | string;
     dateFin?: Prisma.DateTimeFilter<'Creneau'> | Date | string;
     statut?: Prisma.EnumStatusFilter<'Creneau'> | $Enums.Status;
-    description?: Prisma.StringFilter<'Creneau'> | string;
+    description?: Prisma.StringNullableFilter<'Creneau'> | string | null;
     capacite?: Prisma.IntFilter<'Creneau'> | number;
     dateCreation?: Prisma.DateTimeFilter<'Creneau'> | Date | string;
     participations?: Prisma.ParticipationListRelationFilter;
@@ -284,7 +284,7 @@ export type CreneauOrderByWithAggregationInput = {
   dateDebut?: Prisma.SortOrder;
   dateFin?: Prisma.SortOrder;
   statut?: Prisma.SortOrder;
-  description?: Prisma.SortOrder;
+  description?: Prisma.SortOrderInput | Prisma.SortOrder;
   capacite?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
   _count?: Prisma.CreneauCountOrderByAggregateInput;
@@ -307,7 +307,10 @@ export type CreneauScalarWhereWithAggregatesInput = {
   dateDebut?: Prisma.DateTimeWithAggregatesFilter<'Creneau'> | Date | string;
   dateFin?: Prisma.DateTimeWithAggregatesFilter<'Creneau'> | Date | string;
   statut?: Prisma.EnumStatusWithAggregatesFilter<'Creneau'> | $Enums.Status;
-  description?: Prisma.StringWithAggregatesFilter<'Creneau'> | string;
+  description?:
+    | Prisma.StringNullableWithAggregatesFilter<'Creneau'>
+    | string
+    | null;
   capacite?: Prisma.IntWithAggregatesFilter<'Creneau'> | number;
   dateCreation?: Prisma.DateTimeWithAggregatesFilter<'Creneau'> | Date | string;
 };
@@ -318,7 +321,7 @@ export type CreneauCreateInput = {
   dateDebut: Date | string;
   dateFin: Date | string;
   statut: $Enums.Status;
-  description: string;
+  description?: string | null;
   capacite: number;
   dateCreation?: Date | string;
   participations?: Prisma.ParticipationCreateNestedManyWithoutCreneauInput;
@@ -330,7 +333,7 @@ export type CreneauUncheckedCreateInput = {
   dateDebut: Date | string;
   dateFin: Date | string;
   statut: $Enums.Status;
-  description: string;
+  description?: string | null;
   capacite: number;
   dateCreation?: Date | string;
   participations?: Prisma.ParticipationUncheckedCreateNestedManyWithoutCreneauInput;
@@ -342,7 +345,7 @@ export type CreneauUpdateInput = {
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   statut?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   capacite?: Prisma.IntFieldUpdateOperationsInput | number;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   participations?: Prisma.ParticipationUpdateManyWithoutCreneauNestedInput;
@@ -354,7 +357,7 @@ export type CreneauUncheckedUpdateInput = {
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   statut?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   capacite?: Prisma.IntFieldUpdateOperationsInput | number;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   participations?: Prisma.ParticipationUncheckedUpdateManyWithoutCreneauNestedInput;
@@ -366,7 +369,7 @@ export type CreneauCreateManyInput = {
   dateDebut: Date | string;
   dateFin: Date | string;
   statut: $Enums.Status;
-  description: string;
+  description?: string | null;
   capacite: number;
   dateCreation?: Date | string;
 };
@@ -377,7 +380,7 @@ export type CreneauUpdateManyMutationInput = {
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   statut?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   capacite?: Prisma.IntFieldUpdateOperationsInput | number;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -388,7 +391,7 @@ export type CreneauUncheckedUpdateManyInput = {
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   statut?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   capacite?: Prisma.IntFieldUpdateOperationsInput | number;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -459,6 +462,10 @@ export type EnumStatusFieldUpdateOperationsInput = {
   set?: $Enums.Status;
 };
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null;
+};
+
 export type IntFieldUpdateOperationsInput = {
   set?: number;
   increment?: number;
@@ -499,7 +506,7 @@ export type CreneauCreateWithoutParticipationsInput = {
   dateDebut: Date | string;
   dateFin: Date | string;
   statut: $Enums.Status;
-  description: string;
+  description?: string | null;
   capacite: number;
   dateCreation?: Date | string;
 };
@@ -510,7 +517,7 @@ export type CreneauUncheckedCreateWithoutParticipationsInput = {
   dateDebut: Date | string;
   dateFin: Date | string;
   statut: $Enums.Status;
-  description: string;
+  description?: string | null;
   capacite: number;
   dateCreation?: Date | string;
 };
@@ -549,7 +556,7 @@ export type CreneauUpdateWithoutParticipationsInput = {
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   statut?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   capacite?: Prisma.IntFieldUpdateOperationsInput | number;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -560,7 +567,7 @@ export type CreneauUncheckedUpdateWithoutParticipationsInput = {
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   statut?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   capacite?: Prisma.IntFieldUpdateOperationsInput | number;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -670,7 +677,7 @@ export type $CreneauPayload<
       dateDebut: Date;
       dateFin: Date;
       statut: $Enums.Status;
-      description: string;
+      description: string | null;
       capacite: number;
       dateCreation: Date;
     },

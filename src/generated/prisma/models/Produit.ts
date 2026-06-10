@@ -196,8 +196,8 @@ export type ProduitGroupByOutputType = {
   typeProduitId: string;
   quantite: number;
   dateArrive: Date;
-  dateSortie: Date;
-  datePeremption: Date;
+  dateSortie: Date | null;
+  datePeremption: Date | null;
   _count: ProduitCountAggregateOutputType | null;
   _avg: ProduitAvgAggregateOutputType | null;
   _sum: ProduitSumAggregateOutputType | null;
@@ -226,8 +226,12 @@ export type ProduitWhereInput = {
   typeProduitId?: Prisma.StringFilter<'Produit'> | string;
   quantite?: Prisma.FloatFilter<'Produit'> | number;
   dateArrive?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-  dateSortie?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-  datePeremption?: Prisma.DateTimeFilter<'Produit'> | Date | string;
+  dateSortie?: Prisma.DateTimeNullableFilter<'Produit'> | Date | string | null;
+  datePeremption?:
+    | Prisma.DateTimeNullableFilter<'Produit'>
+    | Date
+    | string
+    | null;
   typeProduit?: Prisma.XOR<
     Prisma.Type_ProduitScalarRelationFilter,
     Prisma.Type_ProduitWhereInput
@@ -240,8 +244,8 @@ export type ProduitOrderByWithRelationInput = {
   typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
-  dateSortie?: Prisma.SortOrder;
-  datePeremption?: Prisma.SortOrder;
+  dateSortie?: Prisma.SortOrderInput | Prisma.SortOrder;
+  datePeremption?: Prisma.SortOrderInput | Prisma.SortOrder;
   typeProduit?: Prisma.Type_ProduitOrderByWithRelationInput;
   produitPaniers?: Prisma.Produit_PanierOrderByRelationAggregateInput;
   _relevance?: Prisma.ProduitOrderByRelevanceInput;
@@ -256,8 +260,16 @@ export type ProduitWhereUniqueInput = Prisma.AtLeast<
     typeProduitId?: Prisma.StringFilter<'Produit'> | string;
     quantite?: Prisma.FloatFilter<'Produit'> | number;
     dateArrive?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-    dateSortie?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-    datePeremption?: Prisma.DateTimeFilter<'Produit'> | Date | string;
+    dateSortie?:
+      | Prisma.DateTimeNullableFilter<'Produit'>
+      | Date
+      | string
+      | null;
+    datePeremption?:
+      | Prisma.DateTimeNullableFilter<'Produit'>
+      | Date
+      | string
+      | null;
     typeProduit?: Prisma.XOR<
       Prisma.Type_ProduitScalarRelationFilter,
       Prisma.Type_ProduitWhereInput
@@ -272,8 +284,8 @@ export type ProduitOrderByWithAggregationInput = {
   typeProduitId?: Prisma.SortOrder;
   quantite?: Prisma.SortOrder;
   dateArrive?: Prisma.SortOrder;
-  dateSortie?: Prisma.SortOrder;
-  datePeremption?: Prisma.SortOrder;
+  dateSortie?: Prisma.SortOrderInput | Prisma.SortOrder;
+  datePeremption?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.ProduitCountOrderByAggregateInput;
   _avg?: Prisma.ProduitAvgOrderByAggregateInput;
   _max?: Prisma.ProduitMaxOrderByAggregateInput;
@@ -293,19 +305,24 @@ export type ProduitScalarWhereWithAggregatesInput = {
   typeProduitId?: Prisma.StringWithAggregatesFilter<'Produit'> | string;
   quantite?: Prisma.FloatWithAggregatesFilter<'Produit'> | number;
   dateArrive?: Prisma.DateTimeWithAggregatesFilter<'Produit'> | Date | string;
-  dateSortie?: Prisma.DateTimeWithAggregatesFilter<'Produit'> | Date | string;
-  datePeremption?:
-    | Prisma.DateTimeWithAggregatesFilter<'Produit'>
+  dateSortie?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<'Produit'>
     | Date
-    | string;
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<'Produit'>
+    | Date
+    | string
+    | null;
 };
 
 export type ProduitCreateInput = {
   id?: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
   typeProduit: Prisma.Type_ProduitCreateNestedOneWithoutProduitsInput;
   produitPaniers?: Prisma.Produit_PanierCreateNestedManyWithoutProduitInput;
 };
@@ -315,8 +332,8 @@ export type ProduitUncheckedCreateInput = {
   typeProduitId: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
   produitPaniers?: Prisma.Produit_PanierUncheckedCreateNestedManyWithoutProduitInput;
 };
 
@@ -324,8 +341,16 @@ export type ProduitUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   typeProduit?: Prisma.Type_ProduitUpdateOneRequiredWithoutProduitsNestedInput;
   produitPaniers?: Prisma.Produit_PanierUpdateManyWithoutProduitNestedInput;
 };
@@ -335,8 +360,16 @@ export type ProduitUncheckedUpdateInput = {
   typeProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   produitPaniers?: Prisma.Produit_PanierUncheckedUpdateManyWithoutProduitNestedInput;
 };
 
@@ -345,16 +378,24 @@ export type ProduitCreateManyInput = {
   typeProduitId: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
 };
 
 export type ProduitUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ProduitUncheckedUpdateManyInput = {
@@ -362,8 +403,16 @@ export type ProduitUncheckedUpdateManyInput = {
   typeProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ProduitScalarRelationFilter = {
@@ -448,6 +497,10 @@ export type ProduitUpdateOneRequiredWithoutProduitPaniersNestedInput = {
     >,
     Prisma.ProduitUncheckedUpdateWithoutProduitPaniersInput
   >;
+};
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null;
 };
 
 export type ProduitCreateNestedManyWithoutTypeProduitInput = {
@@ -548,8 +601,8 @@ export type ProduitCreateWithoutProduitPaniersInput = {
   id?: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
   typeProduit: Prisma.Type_ProduitCreateNestedOneWithoutProduitsInput;
 };
 
@@ -558,8 +611,8 @@ export type ProduitUncheckedCreateWithoutProduitPaniersInput = {
   typeProduitId: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
 };
 
 export type ProduitCreateOrConnectWithoutProduitPaniersInput = {
@@ -594,8 +647,16 @@ export type ProduitUpdateWithoutProduitPaniersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   typeProduit?: Prisma.Type_ProduitUpdateOneRequiredWithoutProduitsNestedInput;
 };
 
@@ -604,16 +665,24 @@ export type ProduitUncheckedUpdateWithoutProduitPaniersInput = {
   typeProduitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ProduitCreateWithoutTypeProduitInput = {
   id?: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
   produitPaniers?: Prisma.Produit_PanierCreateNestedManyWithoutProduitInput;
 };
 
@@ -621,8 +690,8 @@ export type ProduitUncheckedCreateWithoutTypeProduitInput = {
   id?: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
   produitPaniers?: Prisma.Produit_PanierUncheckedCreateNestedManyWithoutProduitInput;
 };
 
@@ -677,24 +746,36 @@ export type ProduitScalarWhereInput = {
   typeProduitId?: Prisma.StringFilter<'Produit'> | string;
   quantite?: Prisma.FloatFilter<'Produit'> | number;
   dateArrive?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-  dateSortie?: Prisma.DateTimeFilter<'Produit'> | Date | string;
-  datePeremption?: Prisma.DateTimeFilter<'Produit'> | Date | string;
+  dateSortie?: Prisma.DateTimeNullableFilter<'Produit'> | Date | string | null;
+  datePeremption?:
+    | Prisma.DateTimeNullableFilter<'Produit'>
+    | Date
+    | string
+    | null;
 };
 
 export type ProduitCreateManyTypeProduitInput = {
   id?: string;
   quantite: number;
   dateArrive: Date | string;
-  dateSortie: Date | string;
-  datePeremption: Date | string;
+  dateSortie?: Date | string | null;
+  datePeremption?: Date | string | null;
 };
 
 export type ProduitUpdateWithoutTypeProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   produitPaniers?: Prisma.Produit_PanierUpdateManyWithoutProduitNestedInput;
 };
 
@@ -702,8 +783,16 @@ export type ProduitUncheckedUpdateWithoutTypeProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   produitPaniers?: Prisma.Produit_PanierUncheckedUpdateManyWithoutProduitNestedInput;
 };
 
@@ -711,8 +800,16 @@ export type ProduitUncheckedUpdateManyWithoutTypeProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
   dateArrive?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dateSortie?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  datePeremption?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dateSortie?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  datePeremption?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 /**
@@ -816,8 +913,8 @@ export type $ProduitPayload<
       typeProduitId: string;
       quantite: number;
       dateArrive: Date;
-      dateSortie: Date;
-      datePeremption: Date;
+      dateSortie: Date | null;
+      datePeremption: Date | null;
     },
     ExtArgs['result']['produit']
   >;
