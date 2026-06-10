@@ -4,6 +4,7 @@ import {
   IsEnum,
   IsInt,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Min,
 } from 'class-validator';
@@ -25,9 +26,10 @@ export class CreateCreneauDto {
   @IsEnum(Status)
   statut: Status;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  description: string;
+  description?: string;
 
   @IsInt()
   @Min(0)
