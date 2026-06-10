@@ -38,7 +38,7 @@ export class ProduitService {
   modifie(params: {
     where: Prisma.ProduitWhereUniqueInput;
     data: UpdateProduitDto;
-  }): Promise<Produit> {
+  }): Promise<ProduitAvecType> {
     const { where, data } = params;
     return this.prisma.produit.update({
       where,
@@ -53,6 +53,7 @@ export class ProduitService {
           typeProduit: { connect: { id: data.typeProduitId } },
         }),
       },
+      include: { typeProduit: true },
     });
   }
 
