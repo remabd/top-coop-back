@@ -30,6 +30,12 @@ export class ProduitController {
   }
 
   @RoleDecorator(Role.ADMIN)
+  @Get('avecType')
+  avecType() {
+    return this.produitService.produitsAvecType();
+  }
+
+  @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
     return this.produitService.produit({ id });
