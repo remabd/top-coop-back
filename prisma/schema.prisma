@@ -13,7 +13,6 @@ model Creneau {
   nom            String
   dateDebut      DateTime
   dateFin        DateTime
-  statut         Status
   description    String?
   capacite       Int
   dateCreation   DateTime        @default(now())
@@ -109,12 +108,6 @@ model Commande {
 enum Role {
   USER
   ADMIN
-}
-
-enum Status {
-  AVANT
-  EN_COURS
-  FINI
 }
 
 enum Unite {

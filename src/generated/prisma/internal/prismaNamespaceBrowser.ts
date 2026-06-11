@@ -86,7 +86,6 @@ export const CreneauScalarFieldEnum = {
   nom: 'nom',
   dateDebut: 'dateDebut',
   dateFin: 'dateFin',
-  statut: 'statut',
   description: 'description',
   capacite: 'capacite',
   dateCreation: 'dateCreation',

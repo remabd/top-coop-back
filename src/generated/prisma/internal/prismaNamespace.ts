@@ -1111,7 +1111,6 @@ export const CreneauScalarFieldEnum = {
   nom: 'nom',
   dateDebut: 'dateDebut',
   dateFin: 'dateFin',
-  statut: 'statut',
   description: 'description',
   capacite: 'capacite',
   dateCreation: 'dateCreation',
@@ -1325,14 +1324,6 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'DateTime'
->;
-
-/**
- * Reference to a field of type 'Status'
- */
-export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Status'
 >;
 
 /**
