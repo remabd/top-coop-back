@@ -446,10 +446,6 @@ export type Type_ProduitUpdateOneRequiredWithoutProduitsNestedInput = {
   >;
 };
 
-export type EnumUniteFieldUpdateOperationsInput = {
-  set?: $Enums.Unite;
-};
-
 export type Type_ProduitCreateNestedOneWithoutCommandeProduitsInput = {
   create?: Prisma.XOR<
     Prisma.Type_ProduitCreateWithoutCommandeProduitsInput,

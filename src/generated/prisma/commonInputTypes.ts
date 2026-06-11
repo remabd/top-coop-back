@@ -201,6 +201,23 @@ export type FloatWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedFloatFilter<$PrismaModel>;
 };
 
+export type EnumUniteFilter<$PrismaModel = never> = {
+  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
+  in?: $Enums.Unite[];
+  notIn?: $Enums.Unite[];
+  not?: Prisma.NestedEnumUniteFilter<$PrismaModel> | $Enums.Unite;
+};
+
+export type EnumUniteWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
+  in?: $Enums.Unite[];
+  notIn?: $Enums.Unite[];
+  not?: Prisma.NestedEnumUniteWithAggregatesFilter<$PrismaModel> | $Enums.Unite;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
+};
+
 export type DateTimeNullableFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null;
   in?: Date[] | string[] | null;
@@ -232,23 +249,6 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>;
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
-};
-
-export type EnumUniteFilter<$PrismaModel = never> = {
-  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
-  in?: $Enums.Unite[];
-  notIn?: $Enums.Unite[];
-  not?: Prisma.NestedEnumUniteFilter<$PrismaModel> | $Enums.Unite;
-};
-
-export type EnumUniteWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
-  in?: $Enums.Unite[];
-  notIn?: $Enums.Unite[];
-  not?: Prisma.NestedEnumUniteWithAggregatesFilter<$PrismaModel> | $Enums.Unite;
-  _count?: Prisma.NestedIntFilter<$PrismaModel>;
-  _min?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
-  _max?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
 };
 
 export type NestedStringFilter<$PrismaModel = never> = {
@@ -446,6 +446,23 @@ export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedFloatFilter<$PrismaModel>;
 };
 
+export type NestedEnumUniteFilter<$PrismaModel = never> = {
+  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
+  in?: $Enums.Unite[];
+  notIn?: $Enums.Unite[];
+  not?: Prisma.NestedEnumUniteFilter<$PrismaModel> | $Enums.Unite;
+};
+
+export type NestedEnumUniteWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
+  in?: $Enums.Unite[];
+  notIn?: $Enums.Unite[];
+  not?: Prisma.NestedEnumUniteWithAggregatesFilter<$PrismaModel> | $Enums.Unite;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
+};
+
 export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null;
   in?: Date[] | string[] | null;
@@ -477,21 +494,4 @@ export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>;
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
-};
-
-export type NestedEnumUniteFilter<$PrismaModel = never> = {
-  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
-  in?: $Enums.Unite[];
-  notIn?: $Enums.Unite[];
-  not?: Prisma.NestedEnumUniteFilter<$PrismaModel> | $Enums.Unite;
-};
-
-export type NestedEnumUniteWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Unite | Prisma.EnumUniteFieldRefInput<$PrismaModel>;
-  in?: $Enums.Unite[];
-  notIn?: $Enums.Unite[];
-  not?: Prisma.NestedEnumUniteWithAggregatesFilter<$PrismaModel> | $Enums.Unite;
-  _count?: Prisma.NestedIntFilter<$PrismaModel>;
-  _min?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
-  _max?: Prisma.NestedEnumUniteFilter<$PrismaModel>;
 };

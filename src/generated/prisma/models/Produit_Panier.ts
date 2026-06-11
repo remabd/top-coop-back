@@ -28,13 +28,11 @@ export type AggregateProduit_Panier = {
 
 export type Produit_PanierAvgAggregateOutputType = {
   quantite: number | null;
-  unite: number | null;
   prix: number | null;
 };
 
 export type Produit_PanierSumAggregateOutputType = {
   quantite: number | null;
-  unite: number | null;
   prix: number | null;
 };
 
@@ -43,7 +41,7 @@ export type Produit_PanierMinAggregateOutputType = {
   panierId: string | null;
   produitId: string | null;
   quantite: number | null;
-  unite: number | null;
+  unite: $Enums.Unite | null;
   prix: number | null;
 };
 
@@ -52,7 +50,7 @@ export type Produit_PanierMaxAggregateOutputType = {
   panierId: string | null;
   produitId: string | null;
   quantite: number | null;
-  unite: number | null;
+  unite: $Enums.Unite | null;
   prix: number | null;
 };
 
@@ -68,13 +66,11 @@ export type Produit_PanierCountAggregateOutputType = {
 
 export type Produit_PanierAvgAggregateInputType = {
   quantite?: true;
-  unite?: true;
   prix?: true;
 };
 
 export type Produit_PanierSumAggregateInputType = {
   quantite?: true;
-  unite?: true;
   prix?: true;
 };
 
@@ -208,7 +204,7 @@ export type Produit_PanierGroupByOutputType = {
   panierId: string;
   produitId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
   _count: Produit_PanierCountAggregateOutputType | null;
   _avg: Produit_PanierAvgAggregateOutputType | null;
@@ -239,7 +235,7 @@ export type Produit_PanierWhereInput = {
   panierId?: Prisma.StringFilter<'Produit_Panier'> | string;
   produitId?: Prisma.StringFilter<'Produit_Panier'> | string;
   quantite?: Prisma.FloatFilter<'Produit_Panier'> | number;
-  unite?: Prisma.FloatFilter<'Produit_Panier'> | number;
+  unite?: Prisma.EnumUniteFilter<'Produit_Panier'> | $Enums.Unite;
   prix?: Prisma.FloatFilter<'Produit_Panier'> | number;
   panier?: Prisma.XOR<
     Prisma.PanierScalarRelationFilter,
@@ -272,7 +268,7 @@ export type Produit_PanierWhereUniqueInput = Prisma.AtLeast<
     panierId?: Prisma.StringFilter<'Produit_Panier'> | string;
     produitId?: Prisma.StringFilter<'Produit_Panier'> | string;
     quantite?: Prisma.FloatFilter<'Produit_Panier'> | number;
-    unite?: Prisma.FloatFilter<'Produit_Panier'> | number;
+    unite?: Prisma.EnumUniteFilter<'Produit_Panier'> | $Enums.Unite;
     prix?: Prisma.FloatFilter<'Produit_Panier'> | number;
     panier?: Prisma.XOR<
       Prisma.PanierScalarRelationFilter,
@@ -312,14 +308,14 @@ export type Produit_PanierScalarWhereWithAggregatesInput = {
   panierId?: Prisma.StringWithAggregatesFilter<'Produit_Panier'> | string;
   produitId?: Prisma.StringWithAggregatesFilter<'Produit_Panier'> | string;
   quantite?: Prisma.FloatWithAggregatesFilter<'Produit_Panier'> | number;
-  unite?: Prisma.FloatWithAggregatesFilter<'Produit_Panier'> | number;
+  unite?: Prisma.EnumUniteWithAggregatesFilter<'Produit_Panier'> | $Enums.Unite;
   prix?: Prisma.FloatWithAggregatesFilter<'Produit_Panier'> | number;
 };
 
 export type Produit_PanierCreateInput = {
   id?: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
   panier: Prisma.PanierCreateNestedOneWithoutProduitPaniersInput;
   produit: Prisma.ProduitCreateNestedOneWithoutProduitPaniersInput;
@@ -330,14 +326,14 @@ export type Produit_PanierUncheckedCreateInput = {
   panierId: string;
   produitId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
 };
 
 export type Produit_PanierUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
   panier?: Prisma.PanierUpdateOneRequiredWithoutProduitPaniersNestedInput;
   produit?: Prisma.ProduitUpdateOneRequiredWithoutProduitPaniersNestedInput;
@@ -348,7 +344,7 @@ export type Produit_PanierUncheckedUpdateInput = {
   panierId?: Prisma.StringFieldUpdateOperationsInput | string;
   produitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -357,14 +353,14 @@ export type Produit_PanierCreateManyInput = {
   panierId: string;
   produitId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
 };
 
 export type Produit_PanierUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -373,7 +369,7 @@ export type Produit_PanierUncheckedUpdateManyInput = {
   panierId?: Prisma.StringFieldUpdateOperationsInput | string;
   produitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -406,7 +402,6 @@ export type Produit_PanierCountOrderByAggregateInput = {
 
 export type Produit_PanierAvgOrderByAggregateInput = {
   quantite?: Prisma.SortOrder;
-  unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
 };
 
@@ -430,7 +425,6 @@ export type Produit_PanierMinOrderByAggregateInput = {
 
 export type Produit_PanierSumOrderByAggregateInput = {
   quantite?: Prisma.SortOrder;
-  unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
 };
 
@@ -542,6 +536,10 @@ export type Produit_PanierUncheckedUpdateManyWithoutPanierNestedInput = {
   deleteMany?:
     | Prisma.Produit_PanierScalarWhereInput
     | Prisma.Produit_PanierScalarWhereInput[];
+};
+
+export type EnumUniteFieldUpdateOperationsInput = {
+  set?: $Enums.Unite;
 };
 
 export type Produit_PanierCreateNestedManyWithoutProduitInput = {
@@ -657,7 +655,7 @@ export type Produit_PanierUncheckedUpdateManyWithoutProduitNestedInput = {
 export type Produit_PanierCreateWithoutPanierInput = {
   id?: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
   produit: Prisma.ProduitCreateNestedOneWithoutProduitPaniersInput;
 };
@@ -666,7 +664,7 @@ export type Produit_PanierUncheckedCreateWithoutPanierInput = {
   id?: string;
   produitId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
 };
 
@@ -725,14 +723,14 @@ export type Produit_PanierScalarWhereInput = {
   panierId?: Prisma.StringFilter<'Produit_Panier'> | string;
   produitId?: Prisma.StringFilter<'Produit_Panier'> | string;
   quantite?: Prisma.FloatFilter<'Produit_Panier'> | number;
-  unite?: Prisma.FloatFilter<'Produit_Panier'> | number;
+  unite?: Prisma.EnumUniteFilter<'Produit_Panier'> | $Enums.Unite;
   prix?: Prisma.FloatFilter<'Produit_Panier'> | number;
 };
 
 export type Produit_PanierCreateWithoutProduitInput = {
   id?: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
   panier: Prisma.PanierCreateNestedOneWithoutProduitPaniersInput;
 };
@@ -741,7 +739,7 @@ export type Produit_PanierUncheckedCreateWithoutProduitInput = {
   id?: string;
   panierId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
 };
 
@@ -792,14 +790,14 @@ export type Produit_PanierCreateManyPanierInput = {
   id?: string;
   produitId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
 };
 
 export type Produit_PanierUpdateWithoutPanierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
   produit?: Prisma.ProduitUpdateOneRequiredWithoutProduitPaniersNestedInput;
 };
@@ -808,7 +806,7 @@ export type Produit_PanierUncheckedUpdateWithoutPanierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   produitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -816,7 +814,7 @@ export type Produit_PanierUncheckedUpdateManyWithoutPanierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   produitId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -824,14 +822,14 @@ export type Produit_PanierCreateManyProduitInput = {
   id?: string;
   panierId: string;
   quantite: number;
-  unite: number;
+  unite: $Enums.Unite;
   prix: number;
 };
 
 export type Produit_PanierUpdateWithoutProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
   panier?: Prisma.PanierUpdateOneRequiredWithoutProduitPaniersNestedInput;
 };
@@ -840,7 +838,7 @@ export type Produit_PanierUncheckedUpdateWithoutProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   panierId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -848,7 +846,7 @@ export type Produit_PanierUncheckedUpdateManyWithoutProduitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   panierId?: Prisma.StringFieldUpdateOperationsInput | string;
   quantite?: Prisma.FloatFieldUpdateOperationsInput | number;
-  unite?: Prisma.FloatFieldUpdateOperationsInput | number;
+  unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
 };
 
@@ -908,7 +906,7 @@ export type $Produit_PanierPayload<
       panierId: string;
       produitId: string;
       quantite: number;
-      unite: number;
+      unite: $Enums.Unite;
       prix: number;
     },
     ExtArgs['result']['produit_Panier']
@@ -1468,7 +1466,7 @@ export interface Produit_PanierFieldRefs {
   readonly panierId: Prisma.FieldRef<'Produit_Panier', 'String'>;
   readonly produitId: Prisma.FieldRef<'Produit_Panier', 'String'>;
   readonly quantite: Prisma.FieldRef<'Produit_Panier', 'Float'>;
-  readonly unite: Prisma.FieldRef<'Produit_Panier', 'Float'>;
+  readonly unite: Prisma.FieldRef<'Produit_Panier', 'Unite'>;
   readonly prix: Prisma.FieldRef<'Produit_Panier', 'Float'>;
 }
 

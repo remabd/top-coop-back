@@ -63,7 +63,7 @@ model Produit_Panier {
   produit   Produit @relation(fields: [produitId], references: [id])
   produitId String
   quantite  Float
-  unite     Float
+  unite     Unite
   prix      Float
 }
 
