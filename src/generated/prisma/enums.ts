@@ -15,14 +15,6 @@ export const Role = {
 
 export type Role = (typeof Role)[keyof typeof Role];
 
-export const Status = {
-  AVANT: 'AVANT',
-  EN_COURS: 'EN_COURS',
-  FINI: 'FINI',
-} as const;
-
-export type Status = (typeof Status)[keyof typeof Status];
-
 export const Unite = {
   VRAC: 'VRAC',
   UNITE: 'UNITE',

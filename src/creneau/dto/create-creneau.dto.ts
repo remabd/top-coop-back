@@ -1,14 +1,12 @@
 import { Type } from 'class-transformer';
 import {
   IsDate,
-  IsEnum,
   IsInt,
   IsNotEmpty,
   IsOptional,
   IsString,
   Min,
 } from 'class-validator';
-import { Status } from '../../generated/prisma/client';
 
 export class CreateCreneauDto {
   @IsString()
@@ -22,9 +20,6 @@ export class CreateCreneauDto {
   @Type(() => Date)
   @IsDate()
   dateFin: Date;
-
-  @IsEnum(Status)
-  statut: Status;
 
   @IsOptional()
   @IsString()

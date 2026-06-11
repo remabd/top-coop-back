@@ -1,4 +1,4 @@
-import { IsNumber, IsUUID, Min, IsString } from 'class-validator';
+import { IsNumber, IsUUID, Min, IsEnum } from 'class-validator';
 import { Unite } from '../../generated/prisma/enums';
 
 export class CreateProduitPanierDto {
@@ -12,7 +12,7 @@ export class CreateProduitPanierDto {
   @Min(0)
   quantite: number;
 
-  @IsString()
+  @IsEnum(Unite)
   @Min(0)
   unite: Unite;
 
