@@ -7,7 +7,7 @@ import {
   ValidateNested,
   IsString,
 } from 'class-validator';
-import { Unite } from 'src/generated/prisma/enums';
+import { Unite } from '../../generated/prisma/enums';
 
 export class CreatePanierDto {
   @IsUUID()
