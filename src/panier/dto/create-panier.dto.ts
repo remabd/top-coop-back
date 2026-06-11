@@ -5,7 +5,9 @@ import {
   IsUUID,
   Min,
   ValidateNested,
+  IsString,
 } from 'class-validator';
+import { Unite } from 'src/generated/prisma/enums';
 
 export class CreatePanierDto {
   @IsUUID()
@@ -24,9 +26,9 @@ class DtoVersProduitPanier {
   @Min(0)
   quantite: number;
 
-  @IsNumber()
+  @IsString()
   @Min(0)
-  unite: number;
+  unite: Unite;
 
   @IsNumber()
   @Min(0)
