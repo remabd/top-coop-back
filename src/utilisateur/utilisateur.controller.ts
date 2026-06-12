@@ -31,6 +31,21 @@ export class UtilisateurController {
     return this.utilisateurService.utilisateurs();
   }
 
+  @Get('participations')
+  voirParticipations(@Req() req: AuthenticatedRequest) {
+    return this.utilisateurService.voirParticipations(req.utilisateur);
+  }
+
+  @Get('paniers')
+  voirPaniers(@Req() req: AuthenticatedRequest) {
+    return this.utilisateurService.voirPaniers(req.utilisateur);
+  }
+
+  @Get('informations')
+  voirInformations(@Req() req: AuthenticatedRequest) {
+    return this.utilisateurService.voirInfos(req.utilisateur);
+  }
+
   @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
@@ -53,24 +68,6 @@ export class UtilisateurController {
   @Delete(':id')
   supprime(@Param('id') id: string) {
     return this.utilisateurService.supprime({ id });
-  }
-
-  @Get('participations/:id')
-  voirParticipations(
-    @Param('id') id: string,
-    @Req() req: AuthenticatedRequest,
-  ) {
-    return this.utilisateurService.voirParticipations(id, req.utilisateur);
-  }
-
-  @Get('paniers/:id')
-  voirPaniers(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
-    return this.utilisateurService.voirPaniers(id, req.utilisateur);
-  }
-
-  @Get('informations/:id')
-  voirInformations(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
-    return this.utilisateurService.voirInfos(id, req.utilisateur);
   }
 
   @RoleDecorator(Role.ADMIN)
