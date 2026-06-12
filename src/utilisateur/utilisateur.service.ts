@@ -1,18 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import {
-  Utilisateur,
-  Prisma,
-  Participation,
-  Panier,
-} from '../generated/prisma/client';
+import { Utilisateur, Prisma, Panier } from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
 import { JwtPayload } from '../auth/auth.guard';
-import { verifieAppartenance } from '../auth/appartenance';
 import { HEURE_EN_MS, QUOTA_MENSUEL_HEURE } from '../CONST';
 import {
+  ParticipationAvecCreneauEtCoParticipants,
   UtilisateurAvecParticipations,
   UtilisateurAvecQuota,
+  UtilisateurInfos,
 } from './dto/utilisateur.type';
 
 @Injectable()
@@ -61,27 +57,48 @@ export class UtilisateurService {
   }
 
   async voirParticipations(
-    id: string,
     utilisateur: JwtPayload | undefined,
-  ): Promise<Participation[]> {
-    verifieAppartenance(id, utilisateur);
-    return this.prisma.participation.findMany({ where: { utilisateurId: id } });
+  ): Promise<ParticipationAvecCreneauEtCoParticipants[]> {
+    if (!utilisateur?.sub) {
+      throw new UnauthorizedException();
+    }
+    return this.prisma.participation.findMany({
+      where: { utilisateurId: utilisateur.sub },
+      include: {
+        creneau: {
+          include: {
+            participations: {
+              select: {
+                utilisateur: {
+                  select: { id: true, prenom: true, nom: true },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
   }
 
-  async voirPaniers(
-    id: string,
-    utilisateur: JwtPayload | undefined,
-  ): Promise<Panier[]> {
-    verifieAppartenance(id, utilisateur);
-    return this.prisma.panier.findMany({ where: { utilisateurId: id } });
+  async voirPaniers(utilisateur: JwtPayload | undefined): Promise<Panier[]> {
+    if (!utilisateur?.sub) {
+      throw new UnauthorizedException();
+    }
+    return this.prisma.panier.findMany({
+      where: { utilisateurId: utilisateur.sub },
+    });
   }
 
   async voirInfos(
-    id: string,
     utilisateur: JwtPayload | undefined,
-  ): Promise<Utilisateur> {
-    verifieAppartenance(id, utilisateur);
-    return this.prisma.utilisateur.findUniqueOrThrow({ where: { id } });
+  ): Promise<UtilisateurInfos> {
+    if (!utilisateur?.sub) {
+      throw new UnauthorizedException();
+    }
+    return this.prisma.utilisateur.findUniqueOrThrow({
+      where: { id: utilisateur.sub },
+      select: { id: true, prenom: true, nom: true, role: true },
+    });
   }
 
   async utilisateursAvecQuota(): Promise<UtilisateurAvecQuota[]> {
