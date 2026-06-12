@@ -209,9 +209,11 @@ async function main() {
   ];
 
   const creneaux = [];
-  for (const c of creneauxData) {
-    const dateDebut = heure(dans(c.offset), c.h);
-    const dateFin = heure(dans(c.offset), c.h + 2);
+  for (let i = 0; i < creneauxData.length; i++) {
+    const c = creneauxData[i];
+    // Un jour distinct par créneau (i + 1 jours dans le futur)
+    const dateDebut = heure(dans(i + 1), c.h);
+    const dateFin = heure(dans(i + 1), c.h + 2);
     creneaux.push(
       await prisma.creneau.create({
         data: {
@@ -231,6 +233,23 @@ async function main() {
       data: {
         utilisateurId: utilisateurs[i].id,
         creneauId: creneaux[i].id,
+        // Un jour distinct par participation (i + 1 jours dans le passé)
+        dateCreation: dans(-(i + 1)),
+      },
+    });
+  }
+
+  console.log('🤝 Participations supplémentaires pour Remi Abdallah...');
+  const remi = utilisateurs[0];
+  // Remi participe déjà au créneau 0 ; on l'ajoute à plusieurs autres,
+  // chacune inscrite un jour différent
+  const creneauxRemi = [1, 2, 3, 5, 7];
+  for (let j = 0; j < creneauxRemi.length; j++) {
+    await prisma.participation.create({
+      data: {
+        utilisateurId: remi.id,
+        creneauId: creneaux[creneauxRemi[j]].id,
+        dateCreation: dans(-(11 + j)),
       },
     });
   }
@@ -315,7 +334,12 @@ async function main() {
   for (let i = 0; i < 10; i++) {
     paniers.push(
       await prisma.panier.create({
-        data: { utilisateurId: utilisateurs[i].id, prix: 0 },
+        data: {
+          utilisateurId: utilisateurs[i].id,
+          prix: 0,
+          // Un jour distinct par panier (i + 1 jours dans le passé)
+          dateCreation: dans(-(i + 1)),
+        },
       }),
     );
   }
@@ -338,6 +362,44 @@ async function main() {
     await prisma.panier.update({
       where: { id: paniers[i].id },
       data: { prix },
+    });
+  }
+
+  console.log('🛒 Paniers supplémentaires pour Remi Abdallah...');
+  // Chaque panier reçoit quelques lignes, puis son prix total est recalculé
+  const paniersRemiData = [
+    [0, 2, 4], // indices de types/produits composant le panier
+    [3, 6, 9],
+    [1, 7],
+  ];
+  for (let p = 0; p < paniersRemiData.length; p++) {
+    const indices = paniersRemiData[p];
+    const panier = await prisma.panier.create({
+      data: {
+        utilisateurId: remi.id,
+        prix: 0,
+        dateCreation: dans(-(11 + p)),
+      },
+    });
+    let total = 0;
+    for (const i of indices) {
+      const type = types[i];
+      const quantite = type.unite === 'VRAC' ? 1.5 : 2;
+      const prix = Number((quantite * type.prix).toFixed(2));
+      total += prix;
+      await prisma.produit_Panier.create({
+        data: {
+          panierId: panier.id,
+          produitId: produits[i].id,
+          quantite,
+          unite: type.unite,
+          prix,
+        },
+      });
+    }
+    await prisma.panier.update({
+      where: { id: panier.id },
+      data: { prix: Number(total.toFixed(2)) },
     });
   }
 
