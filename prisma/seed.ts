@@ -38,7 +38,7 @@ async function main() {
     {
       prenom: 'Remi',
       nom: 'Abdallah',
-      email: 'remi@example.fr',
+      email: 'remi@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -47,7 +47,7 @@ async function main() {
     {
       prenom: 'Pierre',
       nom: 'Nouhet',
-      email: 'pierre@example.fr',
+      email: 'pierre@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -56,7 +56,7 @@ async function main() {
     {
       prenom: 'Matthieu',
       nom: 'Flament',
-      email: 'matthieu@example.fr',
+      email: 'matthieu@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -65,7 +65,7 @@ async function main() {
     {
       prenom: 'Chloe',
       nom: 'Test',
-      email: 'chloe@example.fr',
+      email: 'chloe@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -74,7 +74,7 @@ async function main() {
     {
       prenom: 'Claude',
       nom: 'Test',
-      email: 'claude@example.fr',
+      email: 'claude@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -83,7 +83,7 @@ async function main() {
     {
       prenom: 'Opus',
       nom: 'Test',
-      email: 'opus@example.fr',
+      email: 'opus@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -92,7 +92,7 @@ async function main() {
     {
       prenom: 'Sonnet',
       nom: 'Test',
-      email: 'sonnet@example.fr',
+      email: 'sonnet@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -101,7 +101,7 @@ async function main() {
     {
       prenom: 'Fable',
       nom: 'Test',
-      email: 'fable@example.fr',
+      email: 'fable@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -110,7 +110,7 @@ async function main() {
     {
       prenom: 'Mythos',
       nom: 'Test',
-      email: 'mythos@example.fr',
+      email: 'mythos@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
@@ -119,7 +119,7 @@ async function main() {
     {
       prenom: 'GPT',
       nom: 'Test',
-      email: 'gpt@example.fr',
+      email: 'gpt@exemple.fr',
       adresse: '1 rue coopcot',
       codePostal: '94000',
       ville: 'Créteil',
