@@ -17,6 +17,12 @@ const heure = (d: Date, h: number) => {
   r.setHours(h, 0, 0, 0);
   return r;
 };
+// Variante avec minutes pour des horaires plus réalistes
+const heureMin = (d: Date, h: number, min: number) => {
+  const r = new Date(d);
+  r.setHours(h, min, 0, 0);
+  return r;
+};
 
 async function main() {
   console.log('🌱 Nettoyage de la base...');
@@ -227,6 +233,72 @@ async function main() {
     );
   }
 
+  console.log('📅 Créneaux supplémentaires (horaires variés)...');
+  // Créneaux avec des horaires non ronds et des durées variables
+  const creneauxVariesData = [
+    {
+      nom: 'Marché de producteurs',
+      description: 'Tenue du stand au marché du samedi matin',
+      capacite: 8,
+      offset: 9,
+      h: 8,
+      min: 30,
+      duree: 4,
+    },
+    {
+      nom: 'Distribution AMAP',
+      description: 'Remise des paniers aux adhérents AMAP',
+      capacite: 4,
+      offset: 10,
+      h: 17,
+      min: 45,
+      duree: 2,
+    },
+    {
+      nom: 'Atelier conserves',
+      description: 'Transformation des légumes de saison en bocaux',
+      capacite: 6,
+      offset: 12,
+      h: 14,
+      min: 15,
+      duree: 3,
+    },
+    {
+      nom: 'Permanence du soir',
+      description: 'Ouverture exceptionnelle en nocturne',
+      capacite: 3,
+      offset: 14,
+      h: 19,
+      min: 30,
+      duree: 2,
+    },
+    {
+      nom: 'Réunion des bénévoles',
+      description: 'Point mensuel sur la vie de la coopérative',
+      capacite: 12,
+      offset: 16,
+      h: 12,
+      min: 0,
+      duree: 1,
+    },
+  ];
+
+  for (const c of creneauxVariesData) {
+    const dateDebut = heureMin(dans(c.offset), c.h, c.min);
+    const dateFin = heureMin(dans(c.offset), c.h + c.duree, c.min);
+    creneaux.push(
+      await prisma.creneau.create({
+        data: {
+          nom: c.nom,
+          description: c.description,
+          capacite: c.capacite,
+          dateDebut,
+          dateFin,
+        },
+      }),
+    );
+  }
+
   console.log('🤝 Création des participations...');
   for (let i = 0; i < 10; i++) {
     await prisma.participation.create({
@@ -243,13 +315,21 @@ async function main() {
   const remi = utilisateurs[0];
   // Remi participe déjà au créneau 0 ; on l'ajoute à plusieurs autres,
   // chacune inscrite un jour différent
-  const creneauxRemi = [1, 2, 3, 5, 7];
+  // Mélange de créneaux d'origine (1, 2, 3, 5, 7) et des nouveaux
+  // créneaux variés (10 = Marché, 11 = AMAP, 12 = Conserves, 14 = Réunion)
+  const creneauxRemi = [1, 2, 3, 5, 7, 10, 11, 12, 14];
+  // Inscriptions étalées sur des jours et des heures différents
+  const inscriptionsRemi = [11, 13, 16, 18, 21, 24, 27, 30, 33];
   for (let j = 0; j < creneauxRemi.length; j++) {
     await prisma.participation.create({
       data: {
         utilisateurId: remi.id,
         creneauId: creneaux[creneauxRemi[j]].id,
-        dateCreation: dans(-(11 + j)),
+        dateCreation: heureMin(
+          dans(-inscriptionsRemi[j]),
+          8 + ((j * 3) % 12),
+          (j * 17) % 60,
+        ),
       },
     });
   }
@@ -366,32 +446,84 @@ async function main() {
   }
 
   console.log('🛒 Paniers supplémentaires pour Remi Abdallah...');
-  // Chaque panier reçoit quelques lignes, puis son prix total est recalculé
+  // Chaque panier liste ses lignes { type/produit, quantité } et la date/heure
+  // de création. Le prix total est recalculé à partir des lignes.
   const paniersRemiData = [
-    [0, 2, 4], // indices de types/produits composant le panier
-    [3, 6, 9],
-    [1, 7],
+    {
+      // Panier "légumes de la semaine" : beaucoup de vrac
+      lignes: [
+        { i: 0, quantite: 2 }, // Courgettes
+        { i: 2, quantite: 1.25 }, // Tomates grappes
+        { i: 4, quantite: 3 }, // Carottes
+      ],
+      jours: 11,
+      h: 9,
+      min: 20,
+    },
+    {
+      // Panier "épicerie sèche" : produits à l'unité
+      lignes: [
+        { i: 3, quantite: 2.5 }, // Pommes de terre
+        { i: 6, quantite: 1 }, // Riz de Camargue
+        { i: 9, quantite: 2 }, // Œufs bio
+      ],
+      jours: 14,
+      h: 18,
+      min: 5,
+    },
+    {
+      // Petit panier "apéro / cadeau"
+      lignes: [
+        { i: 1, quantite: 0.75 }, // Tomates anciennes
+        { i: 7, quantite: 1 }, // Lentilles vertes
+        { i: 8, quantite: 1 }, // Miel de lavande
+      ],
+      jours: 18,
+      h: 11,
+      min: 45,
+    },
+    {
+      // Gros panier familial varié
+      lignes: [
+        { i: 3, quantite: 4 }, // Pommes de terre
+        { i: 5, quantite: 2 }, // Oignons jaunes
+        { i: 0, quantite: 1.5 }, // Courgettes
+        { i: 9, quantite: 3 }, // Œufs bio
+      ],
+      jours: 23,
+      h: 8,
+      min: 30,
+    },
+    {
+      // Panier "garde-manger" : conserves et épicerie
+      lignes: [
+        { i: 7, quantite: 3 }, // Lentilles vertes
+        { i: 6, quantite: 2 }, // Riz de Camargue
+        { i: 8, quantite: 2 }, // Miel de lavande
+      ],
+      jours: 29,
+      h: 16,
+      min: 50,
+    },
   ];
-  for (let p = 0; p < paniersRemiData.length; p++) {
-    const indices = paniersRemiData[p];
+  for (const data of paniersRemiData) {
     const panier = await prisma.panier.create({
       data: {
         utilisateurId: remi.id,
         prix: 0,
-        dateCreation: dans(-(11 + p)),
+        dateCreation: heureMin(dans(-data.jours), data.h, data.min),
       },
     });
     let total = 0;
-    for (const i of indices) {
-      const type = types[i];
-      const quantite = type.unite === 'VRAC' ? 1.5 : 2;
-      const prix = Number((quantite * type.prix).toFixed(2));
+    for (const ligne of data.lignes) {
+      const type = types[ligne.i];
+      const prix = Number((ligne.quantite * type.prix).toFixed(2));
       total += prix;
       await prisma.produit_Panier.create({
         data: {
           panierId: panier.id,
-          produitId: produits[i].id,
-          quantite,
+          produitId: produits[ligne.i].id,
+          quantite: ligne.quantite,
           unite: type.unite,
           prix,
         },

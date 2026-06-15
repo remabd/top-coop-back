@@ -68,4 +68,14 @@ export class PanierService {
       include: { produitPaniers: true },
     });
   }
+
+  paniersComplets() {
+    return this.prisma.panier.findMany({
+      include: {
+        produitPaniers: {
+          include: { produit: { include: { typeProduit: true } } },
+        },
+      },
+    });
+  }
 }
