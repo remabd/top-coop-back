@@ -83,7 +83,7 @@ model Type_Produit {
   quantiteMax      Float
   unite            Unite
   prix             Float
-  ean              String
+  ean              String             @unique
   dateCreation     DateTime           @default(now())
   commandeProduits Commande_Produit[]
   produits         Produit[]
