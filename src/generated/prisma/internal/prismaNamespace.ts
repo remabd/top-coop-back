@@ -1185,6 +1185,7 @@ export const Type_ProduitScalarFieldEnum = {
   quantiteMax: 'quantiteMax',
   unite: 'unite',
   prix: 'prix',
+  ean: 'ean',
   dateCreation: 'dateCreation',
 } as const;
 
@@ -1284,6 +1285,7 @@ export type ProduitOrderByRelevanceFieldEnum =
 export const Type_ProduitOrderByRelevanceFieldEnum = {
   id: 'id',
   nom: 'nom',
+  ean: 'ean',
 } as const;
 
 export type Type_ProduitOrderByRelevanceFieldEnum =
