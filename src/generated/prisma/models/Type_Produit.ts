@@ -261,6 +261,7 @@ export type Type_ProduitOrderByWithRelationInput = {
 export type Type_ProduitWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    ean?: string;
     AND?: Prisma.Type_ProduitWhereInput | Prisma.Type_ProduitWhereInput[];
     OR?: Prisma.Type_ProduitWhereInput[];
     NOT?: Prisma.Type_ProduitWhereInput | Prisma.Type_ProduitWhereInput[];
@@ -268,12 +269,11 @@ export type Type_ProduitWhereUniqueInput = Prisma.AtLeast<
     quantiteMax?: Prisma.FloatFilter<'Type_Produit'> | number;
     unite?: Prisma.EnumUniteFilter<'Type_Produit'> | $Enums.Unite;
     prix?: Prisma.FloatFilter<'Type_Produit'> | number;
-    ean?: Prisma.StringFilter<'Type_Produit'> | string;
     dateCreation?: Prisma.DateTimeFilter<'Type_Produit'> | Date | string;
     commandeProduits?: Prisma.Commande_ProduitListRelationFilter;
     produits?: Prisma.ProduitListRelationFilter;
   },
-  'id'
+  'id' | 'ean'
 >;
 
 export type Type_ProduitOrderByWithAggregationInput = {

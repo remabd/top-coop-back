@@ -336,55 +336,117 @@ async function main() {
 
   console.log('🥕 Création des types de produits...');
   const typesData = [
-    { nom: 'Courgettes', quantiteMax: 50, unite: 'VRAC' as const, prix: 2.4 },
+    {
+      nom: 'Courgettes',
+      quantiteMax: 50,
+      unite: 'VRAC' as const,
+      prix: 2.4,
+      ean: '3000000000017',
+    },
     {
       nom: 'Tomates anciennes',
       quantiteMax: 40,
       unite: 'VRAC' as const,
       prix: 3.9,
+      ean: '3000000000024',
     },
     {
       nom: 'Tomates grappes',
       quantiteMax: 60,
       unite: 'VRAC' as const,
       prix: 2.95,
+      ean: '3000000000031',
     },
     {
       nom: 'Pommes de terre',
       quantiteMax: 100,
       unite: 'VRAC' as const,
       prix: 1.8,
+      ean: '3000000000048',
     },
-    { nom: 'Carottes', quantiteMax: 80, unite: 'VRAC' as const, prix: 1.6 },
+    {
+      nom: 'Carottes',
+      quantiteMax: 80,
+      unite: 'VRAC' as const,
+      prix: 1.6,
+      ean: '3000000000055',
+    },
     {
       nom: 'Oignons jaunes',
       quantiteMax: 70,
       unite: 'VRAC' as const,
       prix: 1.5,
+      ean: '3000000000062',
     },
     {
       nom: 'Riz de Camargue 1kg',
       quantiteMax: 30,
       unite: 'UNITE' as const,
       prix: 3.2,
+      ean: '3000000000079',
     },
     {
       nom: 'Lentilles vertes 500g',
       quantiteMax: 25,
       unite: 'UNITE' as const,
       prix: 2.7,
+      ean: '3000000000086',
     },
     {
       nom: 'Miel de lavande 250g',
       quantiteMax: 20,
       unite: 'UNITE' as const,
       prix: 6.5,
+      ean: '3000000000093',
     },
     {
       nom: 'Œufs bio (boîte de 6)',
       quantiteMax: 35,
       unite: 'UNITE' as const,
       prix: 2.85,
+      ean: '3000000000109',
+    },
+    {
+      nom: 'Pommes Gala 1kg',
+      quantiteMax: 60,
+      unite: 'UNITE' as const,
+      prix: 2.6,
+      ean: '3000000000116',
+    },
+    {
+      nom: 'Bananes',
+      quantiteMax: 55,
+      unite: 'VRAC' as const,
+      prix: 1.95,
+      ean: '3000000000123',
+    },
+    {
+      nom: 'Fromage de chèvre',
+      quantiteMax: 25,
+      unite: 'UNITE' as const,
+      prix: 4.2,
+      ean: '3000000000130',
+    },
+    {
+      nom: 'Pain complet',
+      quantiteMax: 40,
+      unite: 'UNITE' as const,
+      prix: 2.3,
+      ean: '3000000000147',
+    },
+    {
+      nom: 'Épinards frais',
+      quantiteMax: 45,
+      unite: 'VRAC' as const,
+      prix: 2.8,
+      ean: '3000000000154',
+    },
+    {
+      nom: 'Confiture de fraises 350g',
+      quantiteMax: 30,
+      unite: 'UNITE' as const,
+      prix: 4.5,
+      ean: '3000000000161',
     },
   ];
 
@@ -395,7 +457,7 @@ async function main() {
 
   console.log('📦 Création des produits (lots)...');
   const produits = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < types.length; i++) {
     const type = types[i];
     produits.push(
       await prisma.produit.create({
@@ -504,6 +566,30 @@ async function main() {
       jours: 29,
       h: 16,
       min: 50,
+    },
+    {
+      // Panier "petit-déjeuner" : fruits, pain et confiture
+      lignes: [
+        { i: 10, quantite: 2 }, // Pommes Gala
+        { i: 11, quantite: 1.5 }, // Bananes
+        { i: 13, quantite: 1 }, // Pain complet
+        { i: 15, quantite: 1 }, // Confiture de fraises
+      ],
+      jours: 34,
+      h: 7,
+      min: 40,
+    },
+    {
+      // Panier "plateau fromage & verdure"
+      lignes: [
+        { i: 12, quantite: 2 }, // Fromage de chèvre
+        { i: 14, quantite: 2.5 }, // Épinards frais
+        { i: 13, quantite: 1 }, // Pain complet
+        { i: 1, quantite: 1 }, // Tomates anciennes
+      ],
+      jours: 38,
+      h: 19,
+      min: 15,
     },
   ];
   for (const data of paniersRemiData) {

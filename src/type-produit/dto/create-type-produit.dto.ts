@@ -16,4 +16,8 @@ export class CreateTypeProduitDto {
   @IsNumber()
   @Min(0)
   prix: number;
+
+  @IsString()
+  @IsNotEmpty()
+  ean: string;
 }
