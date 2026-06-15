@@ -32,6 +32,12 @@ export class PanierController {
   }
 
   @RoleDecorator(Role.ADMIN)
+  @Get('/complets')
+  tousComplet() {
+    return this.panierService.paniersComplets();
+  }
+
+  @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
     return this.panierService.panier({ id });

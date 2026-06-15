@@ -54,12 +54,12 @@ export class ParticipationController {
     return this.participationService.supprime({ id });
   }
 
-  @Post()
+  @Get('annuler/:id')
   annule(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
     return this.participationService.annule({ id }, req.utilisateur);
   }
 
-  @Get(':id')
+  @Get('/a-faire/:id')
   aFaire(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
     return this.participationService.aFaire(id, req.utilisateur);
   }
