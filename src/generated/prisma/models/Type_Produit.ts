@@ -42,6 +42,7 @@ export type Type_ProduitMinAggregateOutputType = {
   quantiteMax: number | null;
   unite: $Enums.Unite | null;
   prix: number | null;
+  ean: string | null;
   dateCreation: Date | null;
 };
 
@@ -51,6 +52,7 @@ export type Type_ProduitMaxAggregateOutputType = {
   quantiteMax: number | null;
   unite: $Enums.Unite | null;
   prix: number | null;
+  ean: string | null;
   dateCreation: Date | null;
 };
 
@@ -60,6 +62,7 @@ export type Type_ProduitCountAggregateOutputType = {
   quantiteMax: number;
   unite: number;
   prix: number;
+  ean: number;
   dateCreation: number;
   _all: number;
 };
@@ -80,6 +83,7 @@ export type Type_ProduitMinAggregateInputType = {
   quantiteMax?: true;
   unite?: true;
   prix?: true;
+  ean?: true;
   dateCreation?: true;
 };
 
@@ -89,6 +93,7 @@ export type Type_ProduitMaxAggregateInputType = {
   quantiteMax?: true;
   unite?: true;
   prix?: true;
+  ean?: true;
   dateCreation?: true;
 };
 
@@ -98,6 +103,7 @@ export type Type_ProduitCountAggregateInputType = {
   quantiteMax?: true;
   unite?: true;
   prix?: true;
+  ean?: true;
   dateCreation?: true;
   _all?: true;
 };
@@ -202,6 +208,7 @@ export type Type_ProduitGroupByOutputType = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation: Date;
   _count: Type_ProduitCountAggregateOutputType | null;
   _avg: Type_ProduitAvgAggregateOutputType | null;
@@ -232,6 +239,7 @@ export type Type_ProduitWhereInput = {
   quantiteMax?: Prisma.FloatFilter<'Type_Produit'> | number;
   unite?: Prisma.EnumUniteFilter<'Type_Produit'> | $Enums.Unite;
   prix?: Prisma.FloatFilter<'Type_Produit'> | number;
+  ean?: Prisma.StringFilter<'Type_Produit'> | string;
   dateCreation?: Prisma.DateTimeFilter<'Type_Produit'> | Date | string;
   commandeProduits?: Prisma.Commande_ProduitListRelationFilter;
   produits?: Prisma.ProduitListRelationFilter;
@@ -243,6 +251,7 @@ export type Type_ProduitOrderByWithRelationInput = {
   quantiteMax?: Prisma.SortOrder;
   unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
+  ean?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
   commandeProduits?: Prisma.Commande_ProduitOrderByRelationAggregateInput;
   produits?: Prisma.ProduitOrderByRelationAggregateInput;
@@ -259,6 +268,7 @@ export type Type_ProduitWhereUniqueInput = Prisma.AtLeast<
     quantiteMax?: Prisma.FloatFilter<'Type_Produit'> | number;
     unite?: Prisma.EnumUniteFilter<'Type_Produit'> | $Enums.Unite;
     prix?: Prisma.FloatFilter<'Type_Produit'> | number;
+    ean?: Prisma.StringFilter<'Type_Produit'> | string;
     dateCreation?: Prisma.DateTimeFilter<'Type_Produit'> | Date | string;
     commandeProduits?: Prisma.Commande_ProduitListRelationFilter;
     produits?: Prisma.ProduitListRelationFilter;
@@ -272,6 +282,7 @@ export type Type_ProduitOrderByWithAggregationInput = {
   quantiteMax?: Prisma.SortOrder;
   unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
+  ean?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
   _count?: Prisma.Type_ProduitCountOrderByAggregateInput;
   _avg?: Prisma.Type_ProduitAvgOrderByAggregateInput;
@@ -293,6 +304,7 @@ export type Type_ProduitScalarWhereWithAggregatesInput = {
   quantiteMax?: Prisma.FloatWithAggregatesFilter<'Type_Produit'> | number;
   unite?: Prisma.EnumUniteWithAggregatesFilter<'Type_Produit'> | $Enums.Unite;
   prix?: Prisma.FloatWithAggregatesFilter<'Type_Produit'> | number;
+  ean?: Prisma.StringWithAggregatesFilter<'Type_Produit'> | string;
   dateCreation?:
     | Prisma.DateTimeWithAggregatesFilter<'Type_Produit'>
     | Date
@@ -305,6 +317,7 @@ export type Type_ProduitCreateInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitCreateNestedManyWithoutTypeProduitInput;
   produits?: Prisma.ProduitCreateNestedManyWithoutTypeProduitInput;
@@ -316,6 +329,7 @@ export type Type_ProduitUncheckedCreateInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
   produits?: Prisma.ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
@@ -327,6 +341,7 @@ export type Type_ProduitUpdateInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   commandeProduits?: Prisma.Commande_ProduitUpdateManyWithoutTypeProduitNestedInput;
   produits?: Prisma.ProduitUpdateManyWithoutTypeProduitNestedInput;
@@ -338,6 +353,7 @@ export type Type_ProduitUncheckedUpdateInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedUpdateManyWithoutTypeProduitNestedInput;
   produits?: Prisma.ProduitUncheckedUpdateManyWithoutTypeProduitNestedInput;
@@ -349,6 +365,7 @@ export type Type_ProduitCreateManyInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
 };
 
@@ -358,6 +375,7 @@ export type Type_ProduitUpdateManyMutationInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
@@ -367,6 +385,7 @@ export type Type_ProduitUncheckedUpdateManyInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
@@ -389,6 +408,7 @@ export type Type_ProduitCountOrderByAggregateInput = {
   quantiteMax?: Prisma.SortOrder;
   unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
+  ean?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
 };
 
@@ -403,6 +423,7 @@ export type Type_ProduitMaxOrderByAggregateInput = {
   quantiteMax?: Prisma.SortOrder;
   unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
+  ean?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
 };
 
@@ -412,6 +433,7 @@ export type Type_ProduitMinOrderByAggregateInput = {
   quantiteMax?: Prisma.SortOrder;
   unite?: Prisma.SortOrder;
   prix?: Prisma.SortOrder;
+  ean?: Prisma.SortOrder;
   dateCreation?: Prisma.SortOrder;
 };
 
@@ -478,6 +500,7 @@ export type Type_ProduitCreateWithoutProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitCreateNestedManyWithoutTypeProduitInput;
 };
@@ -488,6 +511,7 @@ export type Type_ProduitUncheckedCreateWithoutProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
 };
@@ -526,6 +550,7 @@ export type Type_ProduitUpdateWithoutProduitsInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   commandeProduits?: Prisma.Commande_ProduitUpdateManyWithoutTypeProduitNestedInput;
 };
@@ -536,6 +561,7 @@ export type Type_ProduitUncheckedUpdateWithoutProduitsInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   commandeProduits?: Prisma.Commande_ProduitUncheckedUpdateManyWithoutTypeProduitNestedInput;
 };
@@ -546,6 +572,7 @@ export type Type_ProduitCreateWithoutCommandeProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
   produits?: Prisma.ProduitCreateNestedManyWithoutTypeProduitInput;
 };
@@ -556,6 +583,7 @@ export type Type_ProduitUncheckedCreateWithoutCommandeProduitsInput = {
   quantiteMax: number;
   unite: $Enums.Unite;
   prix: number;
+  ean: string;
   dateCreation?: Date | string;
   produits?: Prisma.ProduitUncheckedCreateNestedManyWithoutTypeProduitInput;
 };
@@ -594,6 +622,7 @@ export type Type_ProduitUpdateWithoutCommandeProduitsInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   produits?: Prisma.ProduitUpdateManyWithoutTypeProduitNestedInput;
 };
@@ -604,6 +633,7 @@ export type Type_ProduitUncheckedUpdateWithoutCommandeProduitsInput = {
   quantiteMax?: Prisma.FloatFieldUpdateOperationsInput | number;
   unite?: Prisma.EnumUniteFieldUpdateOperationsInput | $Enums.Unite;
   prix?: Prisma.FloatFieldUpdateOperationsInput | number;
+  ean?: Prisma.StringFieldUpdateOperationsInput | string;
   dateCreation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   produits?: Prisma.ProduitUncheckedUpdateManyWithoutTypeProduitNestedInput;
 };
@@ -670,6 +700,7 @@ export type Type_ProduitSelect<
     quantiteMax?: boolean;
     unite?: boolean;
     prix?: boolean;
+    ean?: boolean;
     dateCreation?: boolean;
     commandeProduits?:
       | boolean
@@ -686,6 +717,7 @@ export type Type_ProduitSelectScalar = {
   quantiteMax?: boolean;
   unite?: boolean;
   prix?: boolean;
+  ean?: boolean;
   dateCreation?: boolean;
 };
 
@@ -693,7 +725,7 @@ export type Type_ProduitOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  'id' | 'nom' | 'quantiteMax' | 'unite' | 'prix' | 'dateCreation',
+  'id' | 'nom' | 'quantiteMax' | 'unite' | 'prix' | 'ean' | 'dateCreation',
   ExtArgs['result']['type_Produit']
 >;
 export type Type_ProduitInclude<
@@ -723,6 +755,7 @@ export type $Type_ProduitPayload<
       quantiteMax: number;
       unite: $Enums.Unite;
       prix: number;
+      ean: string;
       dateCreation: Date;
     },
     ExtArgs['result']['type_Produit']
@@ -1279,6 +1312,7 @@ export interface Type_ProduitFieldRefs {
   readonly quantiteMax: Prisma.FieldRef<'Type_Produit', 'Float'>;
   readonly unite: Prisma.FieldRef<'Type_Produit', 'Unite'>;
   readonly prix: Prisma.FieldRef<'Type_Produit', 'Float'>;
+  readonly ean: Prisma.FieldRef<'Type_Produit', 'String'>;
   readonly dateCreation: Prisma.FieldRef<'Type_Produit', 'DateTime'>;
 }
 
