@@ -51,7 +51,7 @@ export class CreneauService {
   ): Promise<Creneau> {
     const creneau = await this.prisma.creneau.findUniqueOrThrow({
       where,
-      include: { participations: true },
+      include: { participations: { include: { utilisateur: true } } },
     });
     if (utilisateur) {
       throw new UnauthorizedException('Authentification requise');
