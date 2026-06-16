@@ -448,6 +448,14 @@ async function main() {
       prix: 4.5,
       ean: '3000000000161',
     },
+
+    {
+      nom: "huile d'olive",
+      quantiteMax: 30,
+      unite: 'UNITE' as const,
+      prix: 24,
+      ean: '8421555331005',
+    },
   ];
 
   const types = [];
