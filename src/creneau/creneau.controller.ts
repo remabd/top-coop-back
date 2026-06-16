@@ -30,6 +30,11 @@ export class CreneauController {
     return this.creneauService.creneaux();
   }
 
+  @Get('/details/:id')
+  avecDetails(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.creneauService.avecDetails({ id }, req.utilisateur);
+  }
+
   @Get(':id')
   un(@Param('id') id: string) {
     return this.creneauService.creneau({ id });
@@ -48,10 +53,5 @@ export class CreneauController {
   @Delete(':id')
   supprime(@Param('id') id: string) {
     return this.creneauService.supprime({ id });
-  }
-
-  @Get(':id')
-  avecDetails(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
-    return this.creneauService.avecDetails({ id }, req.utilisateur);
   }
 }

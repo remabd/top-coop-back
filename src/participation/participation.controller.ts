@@ -24,7 +24,6 @@ export class ParticipationController {
     return this.participationService.cree(createParticipationDto);
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get()
   tous() {
     return this.participationService.participations();

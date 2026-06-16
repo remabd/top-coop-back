@@ -25,7 +25,6 @@ export class UtilisateurController {
     return this.utilisateurService.cree(utilisateur);
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get()
   tous() {
     return this.utilisateurService.utilisateurs();
