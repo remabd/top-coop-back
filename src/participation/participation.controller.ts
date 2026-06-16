@@ -30,6 +30,21 @@ export class ParticipationController {
     return this.participationService.participations();
   }
 
+  @Get('annuler/:id')
+  annule(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.participationService.annule({ id }, req.utilisateur);
+  }
+
+  @Get('/a-faire/:id')
+  aFaire(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.participationService.aFaire(id, req.utilisateur);
+  }
+
+  @Get('/demande/:id')
+  demande(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.participationService.demanderAParticiper(id, req.utilisateur);
+  }
+
   @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
@@ -52,15 +67,5 @@ export class ParticipationController {
   @Delete(':id')
   supprime(@Param('id') id: string) {
     return this.participationService.supprime({ id });
-  }
-
-  @Get('annuler/:id')
-  annule(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
-    return this.participationService.annule({ id }, req.utilisateur);
-  }
-
-  @Get('/a-faire/:id')
-  aFaire(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
-    return this.participationService.aFaire(id, req.utilisateur);
   }
 }

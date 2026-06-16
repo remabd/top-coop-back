@@ -1,7 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Panier, Prisma } from '../generated/prisma/client';
 import { PrismaService } from '../prisma.service';
-import { CreatePanierDto, DtoVersPanierComplet } from './dto/create-panier.dto';
+import {
+  CreatePanierDto,
+  DtoVersPanierComplet,
+  DtoVersPanierUtilisateur,
+} from './dto/create-panier.dto';
 import { UpdatePanierDto } from './dto/update-panier.dto';
 import { JwtPayload } from '../auth/auth.guard';
 import { verifieAppartenance } from '../auth/appartenance';
@@ -76,6 +80,68 @@ export class PanierService {
           include: { produit: { include: { typeProduit: true } } },
         },
       },
+    });
+  }
+
+  sauverPanierdUtilisateur(
+    data: DtoVersPanierUtilisateur,
+    utilisateur: JwtPayload | undefined,
+  ) {
+    if (!utilisateur?.sub) {
+      throw new NotFoundException();
+    }
+    return this.prisma.$transaction(async (tx) => {
+      const panier = await tx.panier.create({
+        data: {
+          utilisateur: { connect: { id: utilisateur.sub } },
+          prix: data.prix,
+        },
+      });
+
+      for (const ligne of data.produits) {
+        const typeProduit = await tx.type_Produit.findUniqueOrThrow({
+          where: { id: ligne.typeProduitId },
+        });
+        let quantiteRestante = ligne.quantite;
+
+        // Une ligne scannée peut consommer plusieurs lots (FIFO)
+        while (quantiteRestante > 0) {
+          const produit = await tx.produit.findFirstOrThrow({
+            where: { typeProduitId: typeProduit.id, dateSortie: null },
+            orderBy: { dateArrive: 'asc' },
+          });
+
+          const quantiteConsommee = Math.min(
+            produit.quantite,
+            quantiteRestante,
+          );
+          quantiteRestante -= quantiteConsommee;
+          const resteLot = produit.quantite - quantiteConsommee;
+
+          await tx.produit.update({
+            where: { id: produit.id },
+            data: {
+              quantite: resteLot,
+              dateSortie: resteLot <= 0 ? new Date() : null,
+            },
+          });
+
+          await tx.produit_Panier.create({
+            data: {
+              panier: { connect: { id: panier.id } },
+              produit: { connect: { id: produit.id } },
+              quantite: quantiteConsommee,
+              unite: typeProduit.unite,
+              prix: typeProduit.prix * quantiteConsommee,
+            },
+          });
+        }
+      }
+
+      return tx.panier.findUniqueOrThrow({
+        where: { id: panier.id },
+        include: { produitPaniers: true },
+      });
     });
   }
 }
