@@ -13,7 +13,6 @@ export class CreateProduitPanierDto {
   quantite: number;
 
   @IsEnum(Unite)
-  @Min(0)
   unite: Unite;
 
   @IsNumber()
