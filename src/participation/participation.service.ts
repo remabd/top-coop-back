@@ -101,4 +101,30 @@ export class ParticipationService {
       );
     return aFaire >= 0 ? aFaire : 0;
   }
+
+  async demanderAParticiper(id: string, utilisateur: JwtPayload | undefined) {
+    if (!utilisateur) throw new ForbiddenException();
+    await this.verifierPlacesEtDoublon(id, utilisateur.sub);
+    return this.prisma.participation.create({
+      data: {
+        utilisateurId: utilisateur.sub,
+        creneauId: id,
+      },
+    });
+  }
+
+  private async verifierPlacesEtDoublon(
+    creneauId: string,
+    id: string,
+  ): Promise<void> {
+    const creneau = await this.prisma.creneau.findUniqueOrThrow({
+      where: { id: creneauId },
+      include: { participations: true },
+    });
+    const doublon = creneau.participations.some((p) => p.utilisateurId === id);
+    if (creneau.capacite <= creneau.participations.length || doublon) {
+      throw new ForbiddenException('Créneau rempli');
+    }
+    return;
+  }
 }

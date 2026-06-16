@@ -9,7 +9,11 @@ import {
   Req,
 } from '@nestjs/common';
 import { PanierService } from './panier.service';
-import { CreatePanierDto, DtoVersPanierComplet } from './dto/create-panier.dto';
+import {
+  CreatePanierDto,
+  DtoVersPanierComplet,
+  DtoVersPanierUtilisateur,
+} from './dto/create-panier.dto';
 import { UpdatePanierDto } from './dto/update-panier.dto';
 import { RoleDecorator } from '../auth/role.decorator';
 import { Role } from '../generated/prisma/enums';
@@ -64,5 +68,13 @@ export class PanierController {
     @Req() req: AuthenticatedRequest,
   ) {
     return this.panierService.creePanierComplet(data, req.utilisateur);
+  }
+
+  @Post('/utilisateur')
+  sauverPanierdUtilisateur(
+    @Body() data: DtoVersPanierUtilisateur,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.panierService.sauverPanierdUtilisateur(data, req.utilisateur);
   }
 }

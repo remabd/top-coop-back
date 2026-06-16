@@ -48,3 +48,23 @@ export class DtoVersPanierComplet {
   @ArrayMinSize(1)
   produits: DtoVersProduitPanier[];
 }
+
+class DtoVersProduitPanierUtilisateur {
+  @IsUUID()
+  typeProduitId: string;
+
+  @IsNumber()
+  @Min(0)
+  quantite: number;
+}
+
+export class DtoVersPanierUtilisateur {
+  @IsNumber()
+  @Min(0)
+  prix: number;
+
+  @ValidateNested({ each: true })
+  @Type(() => DtoVersProduitPanierUtilisateur)
+  @ArrayMinSize(1)
+  produits: DtoVersProduitPanierUtilisateur[];
+}
