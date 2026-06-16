@@ -23,6 +23,11 @@ export class TypeProduitController {
     return this.typeProduitService.cree(createTypeProduitDto);
   }
 
+  @Get('/par-ean/:id')
+  avecEan(@Param('id') ean: string) {
+    return this.typeProduitService.recupereProduitPanierAvecCodeBarre(ean);
+  }
+
   @RoleDecorator(Role.ADMIN)
   @Get()
   tous() {
