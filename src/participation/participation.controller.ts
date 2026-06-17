@@ -44,7 +44,6 @@ export class ParticipationController {
     return this.participationService.demanderAParticiper(id, req.utilisateur);
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
     return this.participationService.participation({ id });

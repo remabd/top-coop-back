@@ -28,13 +28,11 @@ export class TypeProduitController {
     return this.typeProduitService.recupereProduitPanierAvecCodeBarre(ean);
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get()
   tous() {
     return this.typeProduitService.typeProduits();
   }
 
-  @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
     return this.typeProduitService.typeProduit({ id });
