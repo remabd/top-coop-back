@@ -45,6 +45,16 @@ export class UtilisateurController {
     return this.utilisateurService.voirInfos(req.utilisateur);
   }
 
+  @Get('quotas')
+  voirQuotas() {
+    return this.utilisateurService.utilisateursAvecQuota();
+  }
+
+  @Get('quota')
+  voirQuota(@Req() req: AuthenticatedRequest) {
+    return this.utilisateurService.voirQuota(req.utilisateur);
+  }
+
   @RoleDecorator(Role.ADMIN)
   @Get(':id')
   un(@Param('id') id: string) {
@@ -67,11 +77,5 @@ export class UtilisateurController {
   @Delete(':id')
   supprime(@Param('id') id: string) {
     return this.utilisateurService.supprime({ id });
-  }
-
-  @RoleDecorator(Role.ADMIN)
-  @Get('quota')
-  voirQuota() {
-    return this.utilisateurService.utilisateursAvecQuota();
   }
 }
