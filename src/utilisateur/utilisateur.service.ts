@@ -140,7 +140,10 @@ export class UtilisateurService {
           this.calculeDureeEnHeure(p.creneau.dateDebut, p.creneau.dateFin),
         0,
       );
-    return { ...utilisateur, quota: QUOTA_MENSUEL_HEURE - heuresFaites };
+    return {
+      ...utilisateur,
+      quota: Math.max(QUOTA_MENSUEL_HEURE - heuresFaites, 0),
+    };
   }
 
   private bornesDuMois(date: Date): [Date, Date] {
