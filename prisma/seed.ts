@@ -448,13 +448,47 @@ async function main() {
       prix: 4.5,
       ean: '3000000000161',
     },
-
     {
       nom: "huile d'olive",
       quantiteMax: 30,
       unite: 'UNITE' as const,
       prix: 24,
       ean: '8421555331005',
+    },
+    {
+      nom: 'Cookie tout choco',
+      quantiteMax: 30,
+      unite: 'UNITE' as const,
+      prix: 3.29,
+      ean: '3268350120367',
+    },
+    {
+      nom: 'Nocciolata',
+      quantiteMax: 30,
+      unite: 'UNITE' as const,
+      prix: 6.76,
+      ean: '8052575090278',
+    },
+    {
+      nom: 'Riz Thaï semi complet',
+      quantiteMax: 30,
+      unite: 'UNITE' as const,
+      prix: 2.76,
+      ean: '3273120017099',
+    },
+    {
+      nom: 'Banane bio',
+      quantiteMax: 30,
+      unite: 'VRAC' as const,
+      prix: 2.76,
+      ean: '0208121011022',
+    },
+    {
+      nom: 'Mouchoir recyclé',
+      quantiteMax: 30,
+      unite: 'UNITE' as const,
+      prix: 2.76,
+      ean: '4039468007814',
     },
   ];
 
