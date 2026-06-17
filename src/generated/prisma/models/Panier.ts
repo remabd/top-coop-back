@@ -276,7 +276,7 @@ export type PanierScalarWhereWithAggregatesInput = {
 export type PanierCreateInput = {
   id?: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateur: Prisma.UtilisateurCreateNestedOneWithoutPaniersInput;
   produitPaniers?: Prisma.Produit_PanierCreateNestedManyWithoutPanierInput;
 };
@@ -285,7 +285,7 @@ export type PanierUncheckedCreateInput = {
   id?: string;
   utilisateurId: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   produitPaniers?: Prisma.Produit_PanierUncheckedCreateNestedManyWithoutPanierInput;
 };
 
@@ -309,7 +309,7 @@ export type PanierCreateManyInput = {
   id?: string;
   utilisateurId: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type PanierUpdateManyMutationInput = {
@@ -500,14 +500,14 @@ export type PanierUpdateOneRequiredWithoutProduitPaniersNestedInput = {
 export type PanierCreateWithoutUtilisateurInput = {
   id?: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   produitPaniers?: Prisma.Produit_PanierCreateNestedManyWithoutPanierInput;
 };
 
 export type PanierUncheckedCreateWithoutUtilisateurInput = {
   id?: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   produitPaniers?: Prisma.Produit_PanierUncheckedCreateNestedManyWithoutPanierInput;
 };
 
@@ -567,7 +567,7 @@ export type PanierScalarWhereInput = {
 export type PanierCreateWithoutProduitPaniersInput = {
   id?: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateur: Prisma.UtilisateurCreateNestedOneWithoutPaniersInput;
 };
 
@@ -575,7 +575,7 @@ export type PanierUncheckedCreateWithoutProduitPaniersInput = {
   id?: string;
   utilisateurId: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type PanierCreateOrConnectWithoutProduitPaniersInput = {
@@ -623,7 +623,7 @@ export type PanierUncheckedUpdateWithoutProduitPaniersInput = {
 export type PanierCreateManyUtilisateurInput = {
   id?: string;
   prix: number;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
 };
 
 export type PanierUpdateWithoutUtilisateurInput = {

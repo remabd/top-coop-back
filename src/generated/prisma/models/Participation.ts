@@ -253,14 +253,14 @@ export type ParticipationScalarWhereWithAggregatesInput = {
 
 export type ParticipationCreateInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateur: Prisma.UtilisateurCreateNestedOneWithoutParticipationsInput;
   creneau: Prisma.CreneauCreateNestedOneWithoutParticipationsInput;
 };
 
 export type ParticipationUncheckedCreateInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateurId: string;
   creneauId: string;
 };
@@ -281,7 +281,7 @@ export type ParticipationUncheckedUpdateInput = {
 
 export type ParticipationCreateManyInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateurId: string;
   creneauId: string;
 };
@@ -559,13 +559,13 @@ export type ParticipationUncheckedUpdateManyWithoutUtilisateurNestedInput = {
 
 export type ParticipationCreateWithoutCreneauInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateur: Prisma.UtilisateurCreateNestedOneWithoutParticipationsInput;
 };
 
 export type ParticipationUncheckedCreateWithoutCreneauInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateurId: string;
 };
 
@@ -628,13 +628,13 @@ export type ParticipationScalarWhereInput = {
 
 export type ParticipationCreateWithoutUtilisateurInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   creneau: Prisma.CreneauCreateNestedOneWithoutParticipationsInput;
 };
 
 export type ParticipationUncheckedCreateWithoutUtilisateurInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   creneauId: string;
 };
 
@@ -683,7 +683,7 @@ export type ParticipationUpdateManyWithWhereWithoutUtilisateurInput = {
 
 export type ParticipationCreateManyCreneauInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   utilisateurId: string;
 };
 
@@ -707,7 +707,7 @@ export type ParticipationUncheckedUpdateManyWithoutCreneauInput = {
 
 export type ParticipationCreateManyUtilisateurInput = {
   id?: string;
-  dateCreation: Date | string;
+  dateCreation?: Date | string;
   creneauId: string;
 };
 

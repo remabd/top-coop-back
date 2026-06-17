@@ -1,0 +1,33 @@
+import { Module } from '@nestjs/common';
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { UtilisateurModule } from '../utilisateur/utilisateur.module';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtConstants } from './constants';
+import { AuthGuard } from './auth.guard';
+import { APP_GUARD } from '@nestjs/core';
+import { RoleGuard } from './role.guard';
+
+@Module({
+  imports: [
+    UtilisateurModule,
+    JwtModule.register({
+      global: true,
+      secret: JwtConstants.secret,
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [
+    AuthService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
+    },
+  ],
+  exports: [AuthService],
+})
+export class AuthModule {}

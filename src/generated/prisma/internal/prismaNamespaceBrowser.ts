@@ -86,7 +86,6 @@ export const CreneauScalarFieldEnum = {
   nom: 'nom',
   dateDebut: 'dateDebut',
   dateFin: 'dateFin',
-  statut: 'statut',
   description: 'description',
   capacite: 'capacite',
   dateCreation: 'dateCreation',
@@ -107,8 +106,9 @@ export type ParticipationScalarFieldEnum =
 
 export const UtilisateurScalarFieldEnum = {
   id: 'id',
-  nom: 'nom',
   prenom: 'prenom',
+  nom: 'nom',
+  email: 'email',
   adresse: 'adresse',
   codePostal: 'codePostal',
   ville: 'ville',
@@ -144,12 +144,11 @@ export type Produit_PanierScalarFieldEnum =
 
 export const ProduitScalarFieldEnum = {
   id: 'id',
-  typeproduitId: 'typeproduitId',
+  typeProduitId: 'typeProduitId',
   quantite: 'quantite',
   dateArrive: 'dateArrive',
   dateSortie: 'dateSortie',
   datePeremption: 'datePeremption',
-  type_ProduitId: 'type_ProduitId',
 } as const;
 
 export type ProduitScalarFieldEnum =
@@ -161,6 +160,7 @@ export const Type_ProduitScalarFieldEnum = {
   quantiteMax: 'quantiteMax',
   unite: 'unite',
   prix: 'prix',
+  ean: 'ean',
   dateCreation: 'dateCreation',
 } as const;
 
@@ -193,6 +193,13 @@ export const SortOrder = {
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 
+export const NullsOrder = {
+  first: 'first',
+  last: 'last',
+} as const;
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+
 export const CreneauOrderByRelevanceFieldEnum = {
   id: 'id',
   nom: 'nom',
@@ -213,8 +220,9 @@ export type ParticipationOrderByRelevanceFieldEnum =
 
 export const UtilisateurOrderByRelevanceFieldEnum = {
   id: 'id',
-  nom: 'nom',
   prenom: 'prenom',
+  nom: 'nom',
+  email: 'email',
   adresse: 'adresse',
   codePostal: 'codePostal',
   ville: 'ville',
@@ -243,8 +251,7 @@ export type Produit_PanierOrderByRelevanceFieldEnum =
 
 export const ProduitOrderByRelevanceFieldEnum = {
   id: 'id',
-  typeproduitId: 'typeproduitId',
-  type_ProduitId: 'type_ProduitId',
+  typeProduitId: 'typeProduitId',
 } as const;
 
 export type ProduitOrderByRelevanceFieldEnum =
@@ -253,6 +260,7 @@ export type ProduitOrderByRelevanceFieldEnum =
 export const Type_ProduitOrderByRelevanceFieldEnum = {
   id: 'id',
   nom: 'nom',
+  ean: 'ean',
 } as const;
 
 export type Type_ProduitOrderByRelevanceFieldEnum =
