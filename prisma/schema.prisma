@@ -59,8 +59,8 @@ model Produit_Panier {
   id        String  @id @default(uuid())
   panier    Panier  @relation(fields: [panierId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   panierId  String
-  produit   Produit @relation(fields: [produitId], references: [id], onUpdate: Cascade)
-  produitId String
+  produit   Produit? @relation(fields: [produitId], references: [id], onUpdate: Cascade, onDelete: SetNull)
+  produitId String?
   quantite  Float
   unite     Unite
   prix      Float
