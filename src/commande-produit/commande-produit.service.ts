@@ -9,12 +9,24 @@ export class CommandeProduitService {
   constructor(private prisma: PrismaService) {}
 
   cree(data: CreateCommandeProduitDto): Promise<Commande_Produit> {
-    return this.prisma.commande_Produit.create({
-      data: {
-        quantite: data.quantite,
-        commande: { connect: { id: data.commandeId } },
-        typeProduit: { connect: { id: data.typeProduitId } },
-      },
+    return this.prisma.$transaction(async (tx) => {
+      const commandeProduit = await tx.commande_Produit.create({
+        data: {
+          quantite: data.quantite,
+          commande: { connect: { id: data.commandeId } },
+          typeProduit: { connect: { id: data.typeProduitId } },
+        },
+      });
+
+      await tx.produit.create({
+        data: {
+          quantite: data.quantite,
+          dateArrive: new Date(),
+          typeProduit: { connect: { id: data.typeProduitId } },
+        },
+      });
+
+      return commandeProduit;
     });
   }
 
