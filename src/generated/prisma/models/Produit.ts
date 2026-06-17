@@ -415,9 +415,9 @@ export type ProduitUncheckedUpdateManyInput = {
     | null;
 };
 
-export type ProduitScalarRelationFilter = {
-  is?: Prisma.ProduitWhereInput;
-  isNot?: Prisma.ProduitWhereInput;
+export type ProduitNullableScalarRelationFilter = {
+  is?: Prisma.ProduitWhereInput | null;
+  isNot?: Prisma.ProduitWhereInput | null;
 };
 
 export type ProduitOrderByRelevanceInput = {
@@ -482,13 +482,15 @@ export type ProduitCreateNestedOneWithoutProduitPaniersInput = {
   connect?: Prisma.ProduitWhereUniqueInput;
 };
 
-export type ProduitUpdateOneRequiredWithoutProduitPaniersNestedInput = {
+export type ProduitUpdateOneWithoutProduitPaniersNestedInput = {
   create?: Prisma.XOR<
     Prisma.ProduitCreateWithoutProduitPaniersInput,
     Prisma.ProduitUncheckedCreateWithoutProduitPaniersInput
   >;
   connectOrCreate?: Prisma.ProduitCreateOrConnectWithoutProduitPaniersInput;
   upsert?: Prisma.ProduitUpsertWithoutProduitPaniersInput;
+  disconnect?: Prisma.ProduitWhereInput | boolean;
+  delete?: Prisma.ProduitWhereInput | boolean;
   connect?: Prisma.ProduitWhereUniqueInput;
   update?: Prisma.XOR<
     Prisma.XOR<
