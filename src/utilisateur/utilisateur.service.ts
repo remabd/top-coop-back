@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Utilisateur, Prisma, Panier } from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
@@ -110,6 +114,18 @@ export class UtilisateurService {
       },
     });
     return utilisateurs.map((u) => this.calculeQuota(u));
+  }
+
+  async voirQuota(utilisateur: JwtPayload | undefined): Promise<number> {
+    if (!utilisateur) throw new ForbiddenException();
+    const avecParticipations = await this.prisma.utilisateur.findUniqueOrThrow({
+      where: { id: utilisateur.sub },
+      include: {
+        participations: { include: { creneau: true } },
+      },
+    });
+    const avecQuota = this.calculeQuota(avecParticipations);
+    return avecQuota.quota;
   }
 
   private calculeQuota(
