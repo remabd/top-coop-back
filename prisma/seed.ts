@@ -23,6 +23,28 @@ const heureMin = (d: Date, h: number, min: number) => {
   r.setHours(h, min, 0, 0);
   return r;
 };
+// Interpole une date pour l'élément i parmi `total`, répartis de façon
+// homogène entre `debut` et `fin` (en ms). L'heure exacte est ensuite fixée
+// par heure()/heureMin() le cas échéant.
+const repartirEntre = (
+  i: number,
+  total: number,
+  debut: number,
+  fin: number,
+) => {
+  const t = total <= 1 ? 0 : i / (total - 1);
+  return new Date(debut + t * (fin - debut));
+};
+// Créneaux et participations : du 17 au 25 juin (bornes absolues).
+const CRENEAU_DEBUT = new Date('2026-06-17T00:00:00');
+const FIN = new Date('2026-06-25T00:00:00');
+const repartirDate = (i: number, total: number) =>
+  repartirEntre(i, total, CRENEAU_DEBUT.getTime(), FIN.getTime());
+// Paniers : entre le 15 et le 18 juin (bornes absolues), rien après le 18.
+const PANIER_DEBUT = new Date('2026-06-15T00:00:00');
+const PANIER_FIN = new Date('2026-06-18T00:00:00');
+const repartirPanier = (i: number, total: number) =>
+  repartirEntre(i, total, PANIER_DEBUT.getTime(), PANIER_FIN.getTime());
 
 async function main() {
   console.log('🌱 Nettoyage de la base...');
@@ -143,7 +165,7 @@ async function main() {
   console.log('📅 Création des créneaux...');
   const creneauxData = [
     {
-      nom: 'Atelier étiquette',
+      nom: 'Atelier étiquettes',
       description: 'Étiquetage des produits en vrac',
       capacite: 4,
       offset: 1,
@@ -164,49 +186,49 @@ async function main() {
       h: 10,
     },
     {
-      nom: 'Réception livraison',
-      description: 'Déchargement et contrôle des palettes',
+      nom: 'Rungis',
+      description: 'Déchargement et contrôle',
       capacite: 3,
       offset: 3,
       h: 8,
     },
     {
-      nom: 'Nettoyage du local',
+      nom: 'Mise en rayon',
       description: 'Entretien général de la coopérative',
       capacite: 4,
       offset: 3,
       h: 18,
     },
     {
-      nom: 'Permanence caisse',
-      description: 'Tenue de la caisse et accueil',
+      nom: 'Caisse',
+      description: '',
       capacite: 2,
       offset: 4,
       h: 9,
     },
     {
-      nom: 'Préparation des paniers',
-      description: 'Composition des paniers hebdomadaires',
+      nom: 'Inventaire',
+      description: '',
       capacite: 6,
       offset: 5,
       h: 7,
     },
     {
-      nom: 'Gestion des stocks',
+      nom: 'Mise en rayon',
       description: 'Rangement et rotation des produits',
       capacite: 4,
       offset: 6,
       h: 15,
     },
     {
-      nom: 'Accueil des adhérents',
-      description: 'Information et inscription des nouveaux membres',
+      nom: 'Mise en rayon',
+      description: '',
       capacite: 3,
       offset: 7,
       h: 10,
     },
     {
-      nom: 'Tri des invendus',
+      nom: "Réunion d'information",
       description: 'Tri et redistribution des invendus',
       capacite: 5,
       offset: 8,
@@ -214,12 +236,65 @@ async function main() {
     },
   ];
 
+  // Créneaux avec des horaires non ronds et des durées variables
+  const creneauxVariesData = [
+    {
+      nom: 'Rungis',
+      description: '',
+      capacite: 8,
+      offset: 9,
+      h: 8,
+      min: 30,
+      duree: 4,
+    },
+    {
+      nom: "Réunion d'information",
+      description: 'Remise des paniers aux adhérents précaires',
+      capacite: 4,
+      offset: 10,
+      h: 17,
+      min: 45,
+      duree: 2,
+    },
+    {
+      nom: 'Atelier étiquettes',
+      description: '',
+      capacite: 6,
+      offset: 12,
+      h: 14,
+      min: 15,
+      duree: 3,
+    },
+    {
+      nom: 'Inventaire',
+      description: '',
+      capacite: 3,
+      offset: 14,
+      h: 19,
+      min: 30,
+      duree: 2,
+    },
+    {
+      nom: "Réunion d'information",
+      description: 'Point mensuel sur la vie de la coopérative',
+      capacite: 12,
+      offset: 16,
+      h: 12,
+      min: 0,
+      duree: 1,
+    },
+  ];
+
+  // Total des créneaux (deux lots) pour les répartir entre aujourd'hui et le 25 juin
+  const totalCreneaux = creneauxData.length + creneauxVariesData.length;
+  let idxCreneau = 0;
+
   const creneaux = [];
   for (let i = 0; i < creneauxData.length; i++) {
     const c = creneauxData[i];
-    // Un jour distinct par créneau (i + 1 jours dans le futur)
-    const dateDebut = heure(dans(i + 1), c.h);
-    const dateFin = heure(dans(i + 1), c.h + 2);
+    const jourC = repartirDate(idxCreneau++, totalCreneaux);
+    const dateDebut = heure(jourC, c.h);
+    const dateFin = heure(jourC, c.h + 2);
     creneaux.push(
       await prisma.creneau.create({
         data: {
@@ -234,58 +309,10 @@ async function main() {
   }
 
   console.log('📅 Créneaux supplémentaires (horaires variés)...');
-  // Créneaux avec des horaires non ronds et des durées variables
-  const creneauxVariesData = [
-    {
-      nom: 'Marché de producteurs',
-      description: 'Tenue du stand au marché du samedi matin',
-      capacite: 8,
-      offset: 9,
-      h: 8,
-      min: 30,
-      duree: 4,
-    },
-    {
-      nom: 'Distribution AMAP',
-      description: 'Remise des paniers aux adhérents AMAP',
-      capacite: 4,
-      offset: 10,
-      h: 17,
-      min: 45,
-      duree: 2,
-    },
-    {
-      nom: 'Atelier conserves',
-      description: 'Transformation des légumes de saison en bocaux',
-      capacite: 6,
-      offset: 12,
-      h: 14,
-      min: 15,
-      duree: 3,
-    },
-    {
-      nom: 'Permanence du soir',
-      description: 'Ouverture exceptionnelle en nocturne',
-      capacite: 3,
-      offset: 14,
-      h: 19,
-      min: 30,
-      duree: 2,
-    },
-    {
-      nom: 'Réunion des bénévoles',
-      description: 'Point mensuel sur la vie de la coopérative',
-      capacite: 12,
-      offset: 16,
-      h: 12,
-      min: 0,
-      duree: 1,
-    },
-  ];
-
   for (const c of creneauxVariesData) {
-    const dateDebut = heureMin(dans(c.offset), c.h, c.min);
-    const dateFin = heureMin(dans(c.offset), c.h + c.duree, c.min);
+    const jourC = repartirDate(idxCreneau++, totalCreneaux);
+    const dateDebut = heureMin(jourC, c.h, c.min);
+    const dateFin = heureMin(jourC, c.h + c.duree, c.min);
     creneaux.push(
       await prisma.creneau.create({
         data: {
@@ -305,28 +332,25 @@ async function main() {
       data: {
         utilisateurId: utilisateurs[i].id,
         creneauId: creneaux[i].id,
-        // Un jour distinct par participation (i + 1 jours dans le passé)
-        dateCreation: dans(-(i + 1)),
+        // Réparties du 17 au 25 juin
+        dateCreation: repartirDate(i, 10),
       },
     });
   }
 
   console.log('🤝 Participations supplémentaires pour Remi Abdallah...');
   const remi = utilisateurs[0];
-  // Remi participe déjà au créneau 0 ; on l'ajoute à plusieurs autres,
-  // chacune inscrite un jour différent
-  // Mélange de créneaux d'origine (1, 2, 3, 5, 7) et des nouveaux
-  // créneaux variés (10 = Marché, 11 = AMAP, 12 = Conserves, 14 = Réunion)
+  // Remi participe déjà au créneau 0 ; on l'ajoute à plusieurs autres.
+  // Mélange de créneaux d'origine (1, 2, 3, 5, 7) et des créneaux variés
+  // (10 à 14), inscriptions réparties du 17 au 25 juin.
   const creneauxRemi = [1, 2, 3, 5, 7, 10, 11, 12, 14];
-  // Inscriptions étalées sur des jours et des heures différents
-  const inscriptionsRemi = [11, 13, 16, 18, 21, 24, 27, 30, 33];
   for (let j = 0; j < creneauxRemi.length; j++) {
     await prisma.participation.create({
       data: {
         utilisateurId: remi.id,
         creneauId: creneaux[creneauxRemi[j]].id,
         dateCreation: heureMin(
-          dans(-inscriptionsRemi[j]),
+          repartirDate(j, creneauxRemi.length),
           8 + ((j * 3) % 12),
           (j * 17) % 60,
         ),
@@ -436,14 +460,14 @@ async function main() {
     },
     {
       nom: 'Épinards frais',
-      quantiteMax: 45,
+      quantiteMax: 0,
       unite: 'VRAC' as const,
       prix: 2.8,
       ean: '3000000000154',
     },
     {
       nom: 'Confiture de fraises 350g',
-      quantiteMax: 30,
+      quantiteMax: 0,
       unite: 'UNITE' as const,
       prix: 4.5,
       ean: '3000000000161',
@@ -513,7 +537,91 @@ async function main() {
     );
   }
 
+  // Paniers supplémentaires pour Remi Abdallah.
+  // Chaque panier liste ses lignes { type/produit, quantité } et l'heure de
+  // création. Le prix total est recalculé à partir des lignes.
+  const paniersRemiData = [
+    {
+      // Panier "légumes de la semaine" : beaucoup de vrac
+      lignes: [
+        { i: 0, quantite: 2 }, // Courgettes
+        { i: 2, quantite: 1.25 }, // Tomates grappes
+        { i: 4, quantite: 3 }, // Carottes
+      ],
+      h: 9,
+      min: 20,
+    },
+    {
+      // Panier "épicerie sèche" : produits à l'unité
+      lignes: [
+        { i: 3, quantite: 2.5 }, // Pommes de terre
+        { i: 6, quantite: 1 }, // Riz de Camargue
+        { i: 9, quantite: 2 }, // Œufs bio
+      ],
+      h: 18,
+      min: 5,
+    },
+    {
+      // Petit panier "apéro / cadeau"
+      lignes: [
+        { i: 1, quantite: 0.75 }, // Tomates anciennes
+        { i: 7, quantite: 1 }, // Lentilles vertes
+        { i: 8, quantite: 1 }, // Miel de lavande
+      ],
+      h: 11,
+      min: 45,
+    },
+    {
+      // Gros panier familial varié
+      lignes: [
+        { i: 3, quantite: 4 }, // Pommes de terre
+        { i: 5, quantite: 2 }, // Oignons jaunes
+        { i: 0, quantite: 1.5 }, // Courgettes
+        { i: 9, quantite: 3 }, // Œufs bio
+      ],
+      h: 8,
+      min: 30,
+    },
+    {
+      // Panier "garde-manger" : conserves et épicerie
+      lignes: [
+        { i: 7, quantite: 3 }, // Lentilles vertes
+        { i: 6, quantite: 2 }, // Riz de Camargue
+        { i: 8, quantite: 2 }, // Miel de lavande
+      ],
+      h: 16,
+      min: 50,
+    },
+    {
+      // Panier "petit-déjeuner" : fruits, pain et confiture
+      lignes: [
+        { i: 10, quantite: 2 }, // Pommes Gala
+        { i: 11, quantite: 1.5 }, // Bananes
+        { i: 13, quantite: 1 }, // Pain complet
+        { i: 15, quantite: 1 }, // Confiture de fraises
+      ],
+      h: 7,
+      min: 40,
+    },
+    {
+      // Panier "plateau fromage & verdure"
+      lignes: [
+        { i: 12, quantite: 2 }, // Fromage de chèvre
+        { i: 14, quantite: 2.5 }, // Épinards frais
+        { i: 13, quantite: 1 }, // Pain complet
+        { i: 1, quantite: 1 }, // Tomates anciennes
+      ],
+      h: 19,
+      min: 15,
+    },
+  ];
+
   console.log('🛒 Création des paniers...');
+  // Total des paniers (lot principal + lot Remi) pour les répartir entre
+  // aujourd'hui et le 25 juin
+  const totalPaniers = 10 + paniersRemiData.length;
+  let idxPanier = 0;
+
   const paniers = [];
   for (let i = 0; i < 10; i++) {
     paniers.push(
@@ -521,8 +629,7 @@ async function main() {
         data: {
           utilisateurId: utilisateurs[i].id,
           prix: 0,
-          // Un jour distinct par panier (i + 1 jours dans le passé)
-          dateCreation: dans(-(i + 1)),
+          dateCreation: repartirPanier(idxPanier++, totalPaniers),
         },
       }),
     );
@@ -550,96 +657,16 @@ async function main() {
   }
 
   console.log('🛒 Paniers supplémentaires pour Remi Abdallah...');
-  // Chaque panier liste ses lignes { type/produit, quantité } et la date/heure
-  // de création. Le prix total est recalculé à partir des lignes.
-  const paniersRemiData = [
-    {
-      // Panier "légumes de la semaine" : beaucoup de vrac
-      lignes: [
-        { i: 0, quantite: 2 }, // Courgettes
-        { i: 2, quantite: 1.25 }, // Tomates grappes
-        { i: 4, quantite: 3 }, // Carottes
-      ],
-      jours: 11,
-      h: 9,
-      min: 20,
-    },
-    {
-      // Panier "épicerie sèche" : produits à l'unité
-      lignes: [
-        { i: 3, quantite: 2.5 }, // Pommes de terre
-        { i: 6, quantite: 1 }, // Riz de Camargue
-        { i: 9, quantite: 2 }, // Œufs bio
-      ],
-      jours: 14,
-      h: 18,
-      min: 5,
-    },
-    {
-      // Petit panier "apéro / cadeau"
-      lignes: [
-        { i: 1, quantite: 0.75 }, // Tomates anciennes
-        { i: 7, quantite: 1 }, // Lentilles vertes
-        { i: 8, quantite: 1 }, // Miel de lavande
-      ],
-      jours: 18,
-      h: 11,
-      min: 45,
-    },
-    {
-      // Gros panier familial varié
-      lignes: [
-        { i: 3, quantite: 4 }, // Pommes de terre
-        { i: 5, quantite: 2 }, // Oignons jaunes
-        { i: 0, quantite: 1.5 }, // Courgettes
-        { i: 9, quantite: 3 }, // Œufs bio
-      ],
-      jours: 23,
-      h: 8,
-      min: 30,
-    },
-    {
-      // Panier "garde-manger" : conserves et épicerie
-      lignes: [
-        { i: 7, quantite: 3 }, // Lentilles vertes
-        { i: 6, quantite: 2 }, // Riz de Camargue
-        { i: 8, quantite: 2 }, // Miel de lavande
-      ],
-      jours: 29,
-      h: 16,
-      min: 50,
-    },
-    {
-      // Panier "petit-déjeuner" : fruits, pain et confiture
-      lignes: [
-        { i: 10, quantite: 2 }, // Pommes Gala
-        { i: 11, quantite: 1.5 }, // Bananes
-        { i: 13, quantite: 1 }, // Pain complet
-        { i: 15, quantite: 1 }, // Confiture de fraises
-      ],
-      jours: 34,
-      h: 7,
-      min: 40,
-    },
-    {
-      // Panier "plateau fromage & verdure"
-      lignes: [
-        { i: 12, quantite: 2 }, // Fromage de chèvre
-        { i: 14, quantite: 2.5 }, // Épinards frais
-        { i: 13, quantite: 1 }, // Pain complet
-        { i: 1, quantite: 1 }, // Tomates anciennes
-      ],
-      jours: 38,
-      h: 19,
-      min: 15,
-    },
-  ];
   for (const data of paniersRemiData) {
     const panier = await prisma.panier.create({
       data: {
         utilisateurId: remi.id,
         prix: 0,
-        dateCreation: heureMin(dans(-data.jours), data.h, data.min),
+        dateCreation: heureMin(
+          repartirPanier(idxPanier++, totalPaniers),
+          data.h,
+          data.min,
+        ),
       },
     });
     let total = 0;
